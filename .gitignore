@@ -35,3 +35,6 @@ Temporary Items
 *.iml
 out
 gen
+src/main/resources/
+src/test/
+target/generated-sources/
