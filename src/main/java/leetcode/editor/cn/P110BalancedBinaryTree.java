@@ -41,8 +41,6 @@
 
 package leetcode.editor.cn;
 
-import leetcode.editor.cn.P104MaximumDepthOfBinaryTree.Solution;
-import leetcode.editor.cn.P104MaximumDepthOfBinaryTree.Solution.TreeNode;
 
 //Java：Balanced Binary Tree
 public class P110BalancedBinaryTree{
