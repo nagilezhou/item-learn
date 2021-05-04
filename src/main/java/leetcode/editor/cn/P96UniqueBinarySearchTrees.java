@@ -37,6 +37,11 @@ public class P96UniqueBinarySearchTrees {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        /**
+         * 自底向上
+         * @param n
+         * @return
+         */
         public int numTrees(int n) {
             int dp[] = new int[n + 1];
             dp[0] = 1;
@@ -50,6 +55,11 @@ public class P96UniqueBinarySearchTrees {
             return dp[n];
         }
 
+        /**
+         * 自顶向下
+         * @param n
+         * @return
+         */
         public int numTrees2(int n) {
             int dp[] = new int[n + 1];
             return help(n, dp);
