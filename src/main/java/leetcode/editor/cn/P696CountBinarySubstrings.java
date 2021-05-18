@@ -67,6 +67,7 @@ public class P696CountBinarySubstrings {
             }
             return res;
         }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
