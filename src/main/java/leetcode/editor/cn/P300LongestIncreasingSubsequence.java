@@ -61,6 +61,8 @@ public class P300LongestIncreasingSubsequence {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        // dp n*n
         public int lengthOfLIS(int[] nums) {
             int length = nums.length;
             int[] dp = new int[length];
@@ -76,6 +78,24 @@ public class P300LongestIncreasingSubsequence {
             }
             return maxLength;
         }
+
+        // dp+二分优化 nlogn 贪心算大
+        public int lengthOfLIS2(int[] nums) {
+            int length = nums.length;
+            int[] dp = new int[length];
+            Arrays.fill(dp, 1);
+            int maxLength = 0;
+            for (int i = 0; i < length; i++) {
+                for (int j = 0; j < i; j++) {
+                    if (nums[i] > nums[j]) {
+                        dp[i] = Math.max(dp[i], dp[j] + 1);
+                    }
+                }
+                maxLength = Math.max(maxLength, dp[i]);
+            }
+            return maxLength;
+        }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
