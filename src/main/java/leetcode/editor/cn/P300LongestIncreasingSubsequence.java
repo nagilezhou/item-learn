@@ -81,19 +81,24 @@ public class P300LongestIncreasingSubsequence {
 
         // dp+二分优化 nlogn 贪心算大
         public int lengthOfLIS2(int[] nums) {
-            int length = nums.length;
-            int[] dp = new int[length];
-            Arrays.fill(dp, 1);
-            int maxLength = 0;
-            for (int i = 0; i < length; i++) {
-                for (int j = 0; j < i; j++) {
-                    if (nums[i] > nums[j]) {
-                        dp[i] = Math.max(dp[i], dp[j] + 1);
+            int[] tails = new int[nums.length];
+            int res = 0;
+            for(int num : nums) {
+                int i = 0, j = res;
+                while(i < j) {
+                    int m = (i + j) / 2;
+                    if(tails[m] < num) {
+                        i = m + 1;
+                    } else {
+                        j = m;
                     }
                 }
-                maxLength = Math.max(maxLength, dp[i]);
+                tails[i] = num;
+                if(res == j) {
+                    res++;
+                }
             }
-            return maxLength;
+            return res;
         }
 
     }
