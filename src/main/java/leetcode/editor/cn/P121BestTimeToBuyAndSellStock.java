@@ -38,35 +38,72 @@
 // 👍 1565 👎 0
 
 package leetcode.editor.cn;
+
 //Java：Best Time to Buy and Sell Stock
-public class P121BestTimeToBuyAndSellStock{
+public class P121BestTimeToBuyAndSellStock {
     public static void main(String[] args) {
         Solution solution = new P121BestTimeToBuyAndSellStock().new Solution();
-        System.out.println(solution.maxProfit(new int[]{7,6,4,3,1}));
+        System.out.println(solution.maxProfit(new int[] {7, 6, 4, 3, 1}));
         // TO TEST
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int maxProfit(int[] prices) {
-        if(prices == null || prices.length == 0){
-            return 0;
-        }
-        int maxProfit = 0;
-        int lowPrice = prices[0];
-        for(int i = 0; i < prices.length; i++){
-            int profit = prices[i] - lowPrice;
-            if(profit >= 0){
-                if(profit > maxProfit){
-                    maxProfit = profit;
-                }
-            }else {
-                lowPrice = prices[i];
+    class Solution {
+        // 呆瓜dp
+        public int maxProfit3(int[] prices) {
+            if (prices == null || prices.length == 0) {
+                return 0;
             }
+            int maxProfit = 0;
+            int lowPrice = prices[0];
+            for (int i = 0; i < prices.length; i++) {
+                int profit = prices[i] - lowPrice;
+                if (profit >= 0) {
+                    if (profit > maxProfit) {
+                        maxProfit = profit;
+                    }
+                } else {
+                    lowPrice = prices[i];
+                }
+            }
+            return maxProfit;
         }
-        return maxProfit;
+
+        // dp
+        public int maxProfit2(int[] prices) {
+            if (prices == null || prices.length <= 1) {
+                return 0;
+            }
+            int[][] dp = new int[prices.length][2];
+            dp[0][0] = 0;
+            dp[0][1] = -prices[0];
+            for (int i = 1; i < prices.length; i++) {
+                dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+                // 持股状态只能由从来没有持股状态转化过来,不是dp[i-1][0]
+                dp[i][1] = Math.max(dp[i - 1][1], dp[0][0] - prices[i]);
+            }
+            return dp[prices.length - 1][0];
+        }
+
+        // dp + 空间优化
+        public int maxProfit(int[] prices) {
+            if (prices == null || prices.length <= 1) {
+                return 0;
+            }
+            int[] dp = new int[2];
+            dp[0] = 0;
+            dp[1] = -prices[0];
+            for (int i = 1; i < prices.length; i++) {
+                dp[0] = Math.max(dp[0], dp[1] + prices[i]);
+                dp[1] = Math.max(dp[1],  - prices[i]);
+            }
+            return dp[0];
+        }
+
+
+
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
 

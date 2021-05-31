@@ -56,22 +56,39 @@
 // 👍 744 👎 0
 
 package leetcode.editor.cn;
+
 //Java：Best Time to Buy and Sell Stock III
-public class P123BestTimeToBuyAndSellStockIii{
+public class P123BestTimeToBuyAndSellStockIii {
     public static void main(String[] args) {
         Solution solution = new P123BestTimeToBuyAndSellStockIii().new Solution();
         // TO TEST
     }
-    //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int maxProfit(int[] prices) {
 
-        int firstProfit = 0;
-        int secondProfit = 0;
-        return -1;
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int maxProfit(int[] prices) {
+            if (prices == null || prices.length <= 1) {
+                return 0;
+            }
+            int[][][] dp = new int[prices.length][3][2];
+            dp[0][1][1] = -prices[0];
+            dp[0][2][1] = Integer.MIN_VALUE;
+            for (int i = 1; i < prices.length; i++) {
+                //如果今天要持有股票，应该比较继续持有昨天的股票好，还是今天才开始买股票好
+                //(此时只交易了一次，所以是今天才买入的)
+                dp[i][1][1] = Math.max(dp[i - 1][1][1], -prices[i]);
+                //如果今天持有现金，应该比较昨天持有现金好，还是昨天持有股票加上今天的股价好
+                dp[i][1][0] = Math.max(dp[i - 1][1][0], dp[i - 1][1][1] + prices[i]);
+                //如果今天要持有股票，应该比较继续持有昨天股票好，还是今天才开始买股票好
+                //(此时交易了两次，所以用昨天的现金买股票)
+                dp[i][2][1] = Math.max(dp[i - 1][2][1], dp[i - 1][1][0] - prices[i]);
+                //如果今天要持有现金，应该比较昨天持有现金好，还是昨天持有股票加上今天的股价好
+                dp[i][2][0] = Math.max(dp[i - 1][2][0], dp[i - 1][2][1] + prices[i]);
+            }
+            return Math.max(dp[prices.length - 1][1][0], dp[prices.length - 1][2][0]);
+        }
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
 
