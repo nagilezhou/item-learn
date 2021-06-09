@@ -44,39 +44,26 @@ public class P34FindFirstAndLastPositionOfElementInSortedArray {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[] searchRange(int[] nums, int target) {
-
-            return nums.length == 0 ? new int[] {-1, -1} :
-                new int[] {findLeft(nums, target), findRight(nums, target)};
+            int leftIdx = binarySearch(nums, target, true);
+            int rightIdx = binarySearch(nums, target, false) - 1;
+            if (leftIdx <= rightIdx && rightIdx < nums.length && nums[leftIdx] == target && nums[rightIdx] == target) {
+                return new int[]{leftIdx, rightIdx};
+            }
+            return new int[]{-1, -1};
         }
 
-        private int findLeft(int[] nums, int target) {
-            int low = 0;
-            int high = nums.length;
-            int mid;
-            while (low < high) {
-                mid = low + ((high - low) >> 1);
-                if (target > nums[mid]) {
-                    low = mid + 1;
+        public int binarySearch(int[] nums, int target, boolean lower) {
+            int left = 0, right = nums.length - 1, ans = nums.length;
+            while (left <= right) {
+                int mid = (left + right) / 2;
+                if (nums[mid] > target || (lower && nums[mid] >= target)) {
+                    right = mid - 1;
+                    ans = mid;
                 } else {
-                    high = mid;
+                    left = mid + 1;
                 }
             }
-            return target == nums[low] ? low : -1;
-        }
-
-        private int findRight(int[] nums, int target) {
-            int low = 0;
-            int high = nums.length - 1;
-            int mid;
-            while (low <= high) {
-                mid = low + ((high - low) >> 1);
-                if (target >= nums[mid]) {
-                    low = mid + 1;
-                } else {
-                    high = mid - 1;
-                }
-            }
-            return target == nums[high] ? high : -1;
+            return ans;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
