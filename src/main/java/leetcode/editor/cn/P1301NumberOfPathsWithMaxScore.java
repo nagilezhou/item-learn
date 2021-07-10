@@ -105,7 +105,6 @@ public class P1301NumberOfPathsWithMaxScore {
             }
             return dp[0][0];
         }
-
     }
     //leetcode submit region end(Prohibit modification and deletion)
 

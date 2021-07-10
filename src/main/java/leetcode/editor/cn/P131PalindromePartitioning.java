@@ -30,7 +30,7 @@ import java.util.List;
 public class P131PalindromePartitioning {
     public static void main(String[] args) {
         Solution solution = new P131PalindromePartitioning().new Solution();
-        System.out.println(solution.partition("aab"));
+        System.out.println(solution.partition("abababa"));
         // TO TEST
     }
 

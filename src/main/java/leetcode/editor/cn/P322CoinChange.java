@@ -65,7 +65,7 @@ import java.util.Set;
 public class P322CoinChange {
     public static void main(String[] args) {
         Solution solution = new P322CoinChange().new Solution();
-        System.out.println(solution.coinChange(new int[] {294, 128, 316, 466, 108, 463, 321, 490}, 7130));
+        System.out.println(solution.coinChange(new int[] {2,5,10,1}, 27));
         // TO TEST
     }
 
@@ -73,6 +73,48 @@ public class P322CoinChange {
     class Solution {
 
         public int coinChange(int[] coins, int amount) {
+            int INF = 0x3f3f3f3f;
+            int n = coins.length;
+            int[] dp = new int[amount + 1];
+            for(int i = 1; i <= amount; i++){
+                dp[i] = INF;
+            }
+            for(int i = 1; i <= n; i++){
+                int val = coins[i - 1];
+                for(int j = val; j <= amount; j++){
+                    dp[j] = Math.min(dp[j], dp[j - val] + 1);
+                }
+            }
+            return dp[amount] == INF ? -1 : dp[amount];
+        }
+
+        public int coinChange4(int[] coins, int amount) {
+            int n = coins.length;
+            int[][] dp = new int[n][amount + 1];
+            for (int j = 0; j <= amount; j++) {
+                int k = j / coins[0];
+                if (k * coins[0] == j) {
+                    dp[0][j] = k;
+                } else {
+                    dp[0][j] = Integer.MAX_VALUE;
+                }
+            }
+
+            for (int i = 1; i < n; i++) {
+                int t = coins[i];
+                for (int j = 0; j <= amount; j++) {
+                    dp[i][j] = dp[i - 1][j];
+                    for (int k = 1; k * t <= j; k++) {
+                        if (dp[i - 1][j - k * t] != Integer.MAX_VALUE) {
+                            dp[i][j] = Math.min(dp[i][j], dp[i - 1][j - k * t] + k);
+                        }
+                    }
+                }
+            }
+            return dp[n - 1][amount] == Integer.MAX_VALUE ? -1 : dp[n - 1][amount];
+        }
+
+        public int coinChange3(int[] coins, int amount) {
             // 自底向上的动态规划
             if (coins.length == 0) {
                 return -1;
