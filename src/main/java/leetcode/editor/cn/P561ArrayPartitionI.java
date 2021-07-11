@@ -35,6 +35,9 @@
 // 👍 254 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.Arrays;
+
 //Java：Array Partition I
 public class P561ArrayPartitionI{
     public static void main(String[] args) {
@@ -44,7 +47,13 @@ public class P561ArrayPartitionI{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int arrayPairSum(int[] nums) {
-        return -1;
+        int n = nums.length;
+        Arrays.sort(nums);
+        int sum = 0;
+        for(int i = 0; i < n; i += 2){
+            sum += nums[i];
+        }
+        return sum;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
