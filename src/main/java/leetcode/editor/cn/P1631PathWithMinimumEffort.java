@@ -59,14 +59,17 @@
 package leetcode.editor.cn;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
 
 //Java：Path With Minimum Effort
 public class P1631PathWithMinimumEffort {
     public static void main(String[] args) {
         Solution solution = new P1631PathWithMinimumEffort().new Solution();
-        System.out.println(solution.minimumEffortPath(new int[][]{{1,2,2},{3,8,2},{5,3,5}}));
+        System.out.println(solution.minimumEffortPath(new int[][] {{1, 2, 2}, {3, 8, 2}, {5, 3, 5}}));
         // TO TEST
     }
 
@@ -75,7 +78,7 @@ public class P1631PathWithMinimumEffort {
         int row;
         int col;
 
-        public int minimumEffortPath(int[][] heights) {
+        public int minimumEffortPath2(int[][] heights) {
             row = heights.length;
             col = heights[0].length;
 
@@ -138,6 +141,45 @@ public class P1631PathWithMinimumEffort {
 
         int getIndex(int x, int y) {
             return x * col + y;
+        }
+
+        int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+        public int minimumEffortPath(int[][] heights) {
+            int m = heights.length;
+            int n = heights[0].length;
+            PriorityQueue<int[]> pq = new PriorityQueue<int[]>(new Comparator<int[]>() {
+                @Override
+                public int compare(int[] edge1, int[] edge2) {
+                    return edge1[2] - edge2[2];
+                }
+            });
+            pq.offer(new int[] {0, 0, 0});
+
+            int[] dist = new int[m * n];
+            Arrays.fill(dist, Integer.MAX_VALUE);
+            dist[0] = 0;
+            boolean[] seen = new boolean[m * n];
+
+            while (!pq.isEmpty()) {
+                int[] edge = pq.poll();
+                int x = edge[0], y = edge[1], d = edge[2];
+                int id = x * n + y;
+                if (seen[id]) {
+                    continue;
+                }
+                seen[id] = true;
+                for (int i = 0; i < 4; ++i) {
+                    int nx = x + dirs[i][0];
+                    int ny = y + dirs[i][1];
+                    if (nx >= 0 && nx < m && ny >= 0 && ny < n && Math.max(d, Math.abs(heights[x][y] - heights[nx][ny])) < dist[nx * n + ny]) {
+                        dist[nx * n + ny] = Math.max(d, Math.abs(heights[x][y] - heights[nx][ny]));
+                        pq.offer(new int[] {nx, ny, dist[nx * n + ny]});
+                    }
+                }
+            }
+
+            return dist[m * n - 1];
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
