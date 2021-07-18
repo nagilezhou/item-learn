@@ -37,34 +37,48 @@ public class P34FindFirstAndLastPositionOfElementInSortedArray {
     public static void main(String[] args) {
         Solution solution = new P34FindFirstAndLastPositionOfElementInSortedArray().new Solution();
         // TO TEST
-        int[] test = new int[]{5,7,7,8,8,10};
-        System.out.println(Arrays.toString(solution.searchRange(test,8)));
+        int[] test = new int[]{1};
+        System.out.println(Arrays.toString(solution.searchRange(test,1)));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[] searchRange(int[] nums, int target) {
-            int leftIdx = binarySearch(nums, target, true);
-            int rightIdx = binarySearch(nums, target, false) - 1;
-            if (leftIdx <= rightIdx && rightIdx < nums.length && nums[leftIdx] == target && nums[rightIdx] == target) {
-                return new int[]{leftIdx, rightIdx};
+            int[] ans = new int[]{-1,-1};
+            if(nums.length <= 0){
+                return ans;
             }
-            return new int[]{-1, -1};
-        }
-
-        public int binarySearch(int[] nums, int target, boolean lower) {
-            int left = 0, right = nums.length - 1, ans = nums.length;
-            while (left <= right) {
-                int mid = (left + right) / 2;
-                if (nums[mid] > target || (lower && nums[mid] >= target)) {
-                    right = mid - 1;
-                    ans = mid;
-                } else {
+            int left = 0;
+            int right = nums.length - 1;
+            while (left < right){
+                int mid = left + (right - left) / 2;
+                if(nums[mid] >= target){
+                    right = mid;
+                }else {
                     left = mid + 1;
                 }
             }
+            if (nums[left] != target) {
+                return ans;
+            }
+            ans[0] = left;
+            left = 0;
+            right = nums.length - 1;
+            while (left < right){
+                int mid = left + (right - left) / 2 + 1;
+                if(nums[mid] <= target){
+                    left = mid;
+                }else {
+                    right = mid - 1;
+                }
+            }
+            if (nums[left] != target) {
+                return ans;
+            }
+            ans[1] = left;
             return ans;
         }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
