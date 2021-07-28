@@ -57,7 +57,7 @@ package leetcode.editor.cn;
 public class P29DivideTwoIntegers {
     public static void main(String[] args) {
         Solution solution = new P29DivideTwoIntegers().new Solution();
-        System.out.println(solution.divide(10,3));
+        System.out.println(solution.mul(10,9));
         // TO TEST
     }
 

@@ -27,7 +27,7 @@ public class QuickSort {
             //左指针
             int i = left;
             //右指针
-            int j = right - 1;
+            int j = right;
             while (true) {
                 while (arr[++i] < arr[pivot]) {
                 }
