@@ -52,7 +52,8 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：Minimum Number of Arrows to Burst Balloons
+//Java：Minimum Number of Arrows to Burst Balloons 数组 贪心 区间 排序
+// 2021-08-21 review 1
 public class P452MinimumNumberOfArrowsToBurstBalloons {
     public static void main(String[] args) {
         Solution solution = new P452MinimumNumberOfArrowsToBurstBalloons().new Solution();

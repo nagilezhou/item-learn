@@ -33,7 +33,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Minimum Path Sum
+//Java：Minimum Path Sum 路径dp
+// 2021-08-01 review 1
 public class P64MinimumPathSum {
     public static void main(String[] args) {
         Solution solution = new P64MinimumPathSum().new Solution();

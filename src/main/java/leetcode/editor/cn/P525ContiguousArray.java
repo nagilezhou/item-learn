@@ -35,7 +35,8 @@ package leetcode.editor.cn;
 import java.util.HashMap;
 import java.util.Map;
 
-//Java：Contiguous Array
+//Java：Contiguous Array 数组 前缀和 哈希表
+// 2021-08-21 review 1
 public class P525ContiguousArray {
     public static void main(String[] args) {
         Solution solution = new P525ContiguousArray().new Solution();

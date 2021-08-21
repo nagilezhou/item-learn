@@ -42,11 +42,12 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：Sort Colors
+//Java：Sort Colors 数组 双指针
+// 2021-08-01 review 1
 public class P75SortColors {
     public static void main(String[] args) {
         Solution solution = new P75SortColors().new Solution();
-        int[] nums = new int[] {2, 0, 2, 1, 1, 0};
+        int[] nums = new int[] {2, 0, 1};
         solution.sortColors(nums);
         System.out.println(Arrays.toString(nums));
 
@@ -56,25 +57,20 @@ public class P75SortColors {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public void sortColors(int[] nums) {
-            int left = 0;
-            int right = nums.length - 1;
-            sortOneColors(nums, left, right, 2, 0);
-            sortOneColors(nums, 0, right, 1, 0);
-            sortOneColors(nums, left, nums.length - 1, 2, 1);
-        }
-
-        private void sortOneColors(int[] nums, int left, int right, int leftNum, int rightNum) {
-            while (true) {
-                while (left < nums.length && nums[left] != leftNum) {
-                    left++;
+            int p0 = 0;
+            int p1 = 0;
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] == 1) {
+                    swap(nums, p1, i);
+                    p1++;
+                } else if (nums[i] == 0) {
+                    swap(nums, p0, i);
+                    if (p0 < p1) {
+                        swap(nums, p1, i);
+                    }
+                    p0++;
+                    p1++;
                 }
-                while (right >= 0 && nums[right] != rightNum) {
-                    right--;
-                }
-                if(left >= right){
-                    break;
-                }
-                swap(nums, left, right);
             }
         }
 

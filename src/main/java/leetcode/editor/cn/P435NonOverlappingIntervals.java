@@ -45,7 +45,8 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：Non-overlapping Intervals
+//Java：Non-overlapping Intervals 数组 区间 排序
+// 2021-08-21 review 1
 public class P435NonOverlappingIntervals {
     public static void main(String[] args) {
         Solution solution = new P435NonOverlappingIntervals().new Solution();

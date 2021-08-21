@@ -47,7 +47,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Implement Trie (Prefix Tree)
+//Java：Implement Trie (Prefix Tree) 前缀树 字典树
+// 2021-08-12 review 1
 public class P208ImplementTriePrefixTree {
     public static void main(String[] args) {
         //Solution solution = new P208ImplementTriePrefixTree().new Solution();

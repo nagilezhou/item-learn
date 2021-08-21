@@ -48,7 +48,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Reverse Bits
+//Java：Reverse Bits 位运算
+// 2021-08-12 review 1
 public class P190ReverseBits {
     public static void main(String[] args) {
         Solution solution = new P190ReverseBits().new Solution();

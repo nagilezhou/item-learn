@@ -32,7 +32,8 @@
 package leetcode.editor.cn;
 
 
-//Java：Symmetric Tree
+//Java：Symmetric Tree 二叉树
+// 2021-08-07 review 1
 public class P101SymmetricTree {
     public static void main(String[] args) {
         Solution solution = new P101SymmetricTree().new Solution();

@@ -77,7 +77,8 @@ import java.util.Set;
 
 import org.w3c.dom.Node;
 
-//Java：Copy List with Random Pointer
+//Java：Copy List with Random Pointer 链表 哈希表
+// 2021-08-09 review 1
 public class P138CopyListWithRandomPointer {
     public static void main(String[] args) {
         Solution solution = new P138CopyListWithRandomPointer().new Solution();

@@ -34,7 +34,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-//Java：Top K Frequent Elements
+//Java：Top K Frequent Elements 最大堆
+// 2021-08-17 review 1
 public class P347TopKFrequentElements {
     public static void main(String[] args) {
         Solution solution = new P347TopKFrequentElements().new Solution();

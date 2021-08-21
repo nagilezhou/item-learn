@@ -40,13 +40,12 @@
 
 package leetcode.editor.cn;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-//Java：Beautiful Array
+//Java：Beautiful Array 分治
+// 2021-08-21 review 1
 public class P932BeautifulArray {
     public static void main(String[] args) {
         Solution solution = new P932BeautifulArray().new Solution();
@@ -56,33 +55,27 @@ public class P932BeautifulArray {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        private Map<Integer, int[]> memory = new HashMap();
 
-        Map<Integer, int[]> memo;
+        public int[] beautifulArray(int n) {
+            int[] temp = memory.get(n);
+            if (temp != null) { return temp; }
 
-        public int[] beautifulArray(int N) {
-            memo = new HashMap();
-            return f(N);
-        }
+            int[] result = new int[n];
 
-        public int[] f(int N) {
-            if (memo.containsKey(N)) {
-                return memo.get(N);
-            }
+            int i = 0; // result数组的访问下标 这里使用ArrayList更简洁 但是性能略差
 
-            int[] ans = new int[N];
-            if (N == 1) {
-                ans[0] = 1;
-            } else {
-                int t = 0;
-                for (int x : f((N + 1) / 2)) {
-                    ans[t++] = 2 * x - 1;
-                }
-                for (int x : f(N / 2)) {
-                    ans[t++] = 2 * x;
-                }
-            }
-            memo.put(N, ans);
-            return ans;
+            if (n != 1) {
+                // 这里注意哈 (n + 1) / 2 + n / 2 = n 整数除法有个向下取整
+                // 所以当n为奇数时 左半区元素比右边要多一个 习惯就好
+                for (int num : beautifulArray((n + 1) / 2)) { result[i++] = num * 2 - 1; }
+
+                for (int num : beautifulArray(n / 2)) { result[i++] = num * 2; }
+            } else { result[0] = 1; }
+            // 之所以 n != 1放前面 是因为 当记忆化之后 这个else几乎不会运行到 所以放前面 每次用不到还多运行一次比较指令 浪费性能：） 你还可以优雅一点 一开始想办法给memory添加这个记录 那也可
+
+            memory.put(n, result);
+            return result;
         }
 
     }

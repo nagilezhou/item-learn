@@ -54,7 +54,8 @@ package leetcode.editor.cn;
 import java.util.Deque;
 import java.util.LinkedList;
 
-//Java：Is Graph Bipartite?
+//Java：Is Graph Bipartite? 矩阵 dfs bfs
+// 2021-08-21 review 1
 public class P785IsGraphBipartite {
     public static void main(String[] args) {
         Solution solution = new P785IsGraphBipartite().new Solution();

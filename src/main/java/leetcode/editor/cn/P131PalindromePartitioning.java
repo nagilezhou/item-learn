@@ -26,7 +26,8 @@ package leetcode.editor.cn;
 import java.util.ArrayList;
 import java.util.List;
 
-//Java：Palindrome Partitioning
+//Java：Palindrome Partitioning dp+回溯
+// 2021-08-09 review 1
 public class P131PalindromePartitioning {
     public static void main(String[] args) {
         Solution solution = new P131PalindromePartitioning().new Solution();

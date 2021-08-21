@@ -29,34 +29,33 @@ package leetcode.editor.cn;
 import java.util.ArrayList;
 import java.util.List;
 
-//Java：Find All Numbers Disappeared in an Array
+//Java：Find All Numbers Disappeared in an Array 数组
+// 2021-08-21 review 1
 public class P448FindAllNumbersDisappearedInAnArray {
     public static void main(String[] args) {
         Solution solution = new P448FindAllNumbersDisappearedInAnArray().new Solution();
-        System.out.println(solution.findDisappearedNumbers(new int[]{4,3,2,7,8,2,3,1}));
+        System.out.println(solution.findDisappearedNumbers(new int[] {4, 3, 2, 7, 8, 2, 3, 1}));
         // TO TEST
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public List<Integer> findDisappearedNumbers(int[] nums) {
-            if (nums == null || nums.length == 0) {
-                return null;
+            int n = nums.length;
+            for (int num : nums) {
+                int x = (num - 1) % n;
+                nums[x] += n;
             }
-            int[] copyNum = new int[nums.length];
-            for (int i = 0; i < nums.length; i++) {
-                copyNum[nums[i] - 1] = 1;
-            }
-            List<Integer> res = new ArrayList<>();
-            for (int i = 0; i < copyNum.length; i++) {
-                if (copyNum[i] == 0) {
+            List<Integer> res = new ArrayList<Integer>();
+            for (int i = 0; i < n; i++) {
+                if (nums[i] <= n) {
                     res.add(i + 1);
                 }
             }
             return res;
         }
     }
-    //leetcode submit region end(Prohibit modification and deletion)
+//leetcode submit region end(Prohibit modification and deletion)
 
 }
 

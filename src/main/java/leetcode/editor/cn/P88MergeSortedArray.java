@@ -30,7 +30,8 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：Merge Sorted Array
+//Java：Merge Sorted Array 数组+双指针
+// 2021-08-01 review 1
 public class P88MergeSortedArray {
     public static void main(String[] args) {
         Solution solution = new P88MergeSortedArray().new Solution();

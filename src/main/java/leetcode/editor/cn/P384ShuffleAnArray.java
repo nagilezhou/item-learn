@@ -48,7 +48,8 @@ package leetcode.editor.cn;
 
 import java.util.Random;
 
-//Java：Shuffle an Array
+//Java：Shuffle an Array 洗牌算法
+// 2021-08-17 review 1
 public class P384ShuffleAnArray {
     public static void main(String[] args) {
         Solution solution = new P384ShuffleAnArray().new Solution(new int[] {1, 2, 3});

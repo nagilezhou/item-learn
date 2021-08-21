@@ -49,7 +49,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Word Search
+//Java：Word Search dfs+backtrack
+// 2021-08-01 review 1
 public class P79WordSearch {
     public static void main(String[] args) {
         Solution solution = new P79WordSearch().new Solution();

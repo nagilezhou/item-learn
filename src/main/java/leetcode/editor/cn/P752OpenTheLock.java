@@ -75,7 +75,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
 
-//Java：Open the Lock
+//Java：Open the Lock bfs
+// 2021-08-21 review 1
 public class P752OpenTheLock {
     public static void main(String[] args) {
         Solution solution = new P752OpenTheLock().new Solution();

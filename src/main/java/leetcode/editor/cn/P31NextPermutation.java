@@ -32,7 +32,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Next Permutation
+//Java：Next Permutation 链表
+// 2021-07-31 review 1
 public class P31NextPermutation {
     public static void main(String[] args) {
         Solution solution = new P31NextPermutation().new Solution();
@@ -42,41 +43,33 @@ public class P31NextPermutation {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public void nextPermutation(int[] nums) {
-            if (nums == null || nums.length <= 0) {
-                return;
+            int i = nums.length - 2;
+            while (i >= 0 && nums[i] >= nums[i + 1]) {
+                i--;
             }
-            int firstIndex = -1;
-            for (int i = nums.length - 2; i >= 0; i--) {
-                if (nums[i] < nums[i + 1]) {
-                    firstIndex = i;
-                    break;
+            if (i >= 0) {
+                int j = nums.length - 1;
+                while (j >= 0 && nums[i] >= nums[j]) {
+                    j--;
                 }
+                swap(nums, i, j);
             }
-            if (firstIndex == -1) {
-                reverse(nums, 0, nums.length - 1);
-                return;
-            }
-            int secondIndex = -1;
-            for (int i = nums.length - 1; i >= 0; i--) {
-                if (nums[i] > nums[firstIndex]) {
-                    secondIndex = i;
-                    break;
-                }
-            }
-            swap(nums, firstIndex, secondIndex);
-            reverse(nums, firstIndex + 1, nums.length - 1);
+            reverse(nums, i + 1);
         }
 
-        private void reverse(int[] nums, int i, int j) {
-            while (i < j) {
-                swap(nums, i++, j--);
-            }
+        public void swap(int[] nums, int i, int j) {
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
         }
 
-        private void swap(int[] nums, int i, int i1) {
-            int tmp = nums[i];
-            nums[i] = nums[i1];
-            nums[i1] = tmp;
+        public void reverse(int[] nums, int start) {
+            int left = start, right = nums.length - 1;
+            while (left < right) {
+                swap(nums, left, right);
+                left++;
+                right--;
+            }
         }
 
     }

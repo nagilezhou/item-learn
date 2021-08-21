@@ -45,7 +45,8 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//Java：Max Area of Island
+//Java：Max Area of Island 矩阵 bfs
+// 2021-08-21 review 1
 public class P695MaxAreaOfIsland {
     public static void main(String[] args) {
         Solution solution = new P695MaxAreaOfIsland().new Solution();

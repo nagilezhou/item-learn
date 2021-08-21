@@ -38,7 +38,8 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：Array Partition I
+//Java：Array Partition I 数组 排序
+// 2021-08-21 review 1
 public class P561ArrayPartitionI{
     public static void main(String[] args) {
         Solution solution = new P561ArrayPartitionI().new Solution();

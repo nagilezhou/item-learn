@@ -33,11 +33,11 @@
 
 package leetcode.editor.cn;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//Java：Longest Word in Dictionary through Deleting
+//Java：Longest Word in Dictionary through Deleting 字符串
+// 2021-08-21 review 1
 public class P524LongestWordInDictionaryThroughDeleting {
     public static void main(String[] args) {
         Solution solution = new P524LongestWordInDictionaryThroughDeleting().new Solution();

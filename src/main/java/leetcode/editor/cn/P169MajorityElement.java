@@ -26,7 +26,8 @@
 // 👍 971 👎 0
 
 package leetcode.editor.cn;
-//Java：Majority Element
+//Java：Majority Element 数组 抵消法(投票)
+// 2021-08-12 review 1
 public class P169MajorityElement{
     public static void main(String[] args) {
         Solution solution = new P169MajorityElement().new Solution();

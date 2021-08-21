@@ -31,13 +31,13 @@
 
 package leetcode.editor.cn;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-//Java：Average of Levels in Binary Tree
+//Java：Average of Levels in Binary Tree 二叉树 bfs 层序遍历
+// 2021-08-21 review 1
 public class P637AverageOfLevelsInBinaryTree{
     public static void main(String[] args) {
         Solution solution = new P637AverageOfLevelsInBinaryTree().new Solution();

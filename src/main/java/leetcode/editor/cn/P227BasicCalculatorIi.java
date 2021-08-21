@@ -35,65 +35,115 @@
 package leetcode.editor.cn;
 
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
-//Java：Basic Calculator II
+//Java：Basic Calculator II 栈
+// 2021-08-14 review 1
 public class P227BasicCalculatorIi {
     public static void main(String[] args) {
         Solution solution = new P227BasicCalculatorIi().new Solution();
-        System.out.println(solution.calculate("6/3"));
+        System.out.println(solution.calculate("3 + 2 * 5"));
         // TO TEST
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int calculate(String s) {
-            if (s == null || s.length() == 0) {
-                return 0;
-            }
-            Deque<Integer> stack = new LinkedList<>();
-            int num = 0;
-            char symbol = '+';
-            for(int i = 0; i < s.length(); i++){
-                if (Character.isDigit(s.charAt(i))) {
-                    num = num * 10 + s.charAt(i) - '0';
-                }
-                if ((!Character.isDigit(s.charAt(i)) && s.charAt(i) != ' ') || i == s.length() - 1) {
-                    switch (symbol) {
-                        case '+':
-                            stack.push(num);
-                            break;
-                        case '-':
-                            stack.push(-num);
-                            break;
-                        case '*':
-                            stack.push(stack.pop() * num);
-                            break;
-                        default:
-                            stack.push(stack.pop() / num);
-                    }
-                    symbol = s.charAt(i);
-                    num = 0;
-                }
-            }
+        // 使用 map 维护一个运算符优先级
+        // 这里的优先级划分按照「数学」进行划分即可
+        Map<Character, Integer> map = new HashMap<Character, Integer>() {{
+            put('-', 1);
+            put('+', 1);
+            put('*', 2);
+            put('/', 2);
+            put('%', 2);
+            put('^', 3);
+        }};
 
-            int res = 0;
-            while (!stack.isEmpty()) {
-                res += stack.pop();
+        public int calculate(String s) {
+            // 将所有的空格去掉
+            s = s.replaceAll(" ", "");
+            char[] cs = s.toCharArray();
+            int n = s.length();
+            // 存放所有的数字
+            Deque<Integer> numsStack = new LinkedList<>();
+            // 为了防止第一个数为负数，先往 numsStack 加个 0
+            numsStack.push(0);
+            // 存放所有「非数字以外」的操作
+            Deque<Character> opsStack = new LinkedList<>();
+            for (int i = 0; i < n; i++) {
+                char c = cs[i];
+                if (c == '(') {
+                    opsStack.push(c);
+                } else if (c == ')') {
+                    // 计算到最近一个左括号为止
+                    while (!opsStack.isEmpty()) {
+                        if (opsStack.peek() != '(') {
+                            calc(numsStack, opsStack);
+                        } else {
+                            opsStack.poll();
+                            break;
+                        }
+                    }
+                } else {
+                    if (isNumber(c)) {
+                        int u = 0;
+                        int j = i;
+                        // 将从 i 位置开始后面的连续数字整体取出，加入 numsStack
+                        while (j < n && isNumber(cs[j])) { u = u * 10 + (cs[j++] - '0'); }
+                        numsStack.push(u);
+                        i = j - 1;
+                    } else {
+                        if (i > 0 && (cs[i - 1] == '(' || cs[i - 1] == '+' || cs[i - 1] == '-')) {
+                            numsStack.push(0);
+                        }
+                        // 有一个新操作要入栈时，先把栈内可以算的都算了
+                        // 只有满足「栈内运算符」比「当前运算符」优先级高/同等，才进行运算
+                        while (!opsStack.isEmpty() && opsStack.peek() != '(') {
+                            char prev = opsStack.peek();
+                            if (map.get(prev) >= map.get(c)) {
+                                calc(numsStack, opsStack);
+                            } else {
+                                break;
+                            }
+                        }
+                        opsStack.push(c);
+                    }
+                }
             }
-            return res;
+            // 将剩余的计算完
+            while (!opsStack.isEmpty()) { calc(numsStack, opsStack); }
+            return numsStack.peek();
         }
 
-
-        private int getNumber(Deque<Character> numberStack) {
-            int res = 0;
-            int i = 0;
-            while (!numberStack.isEmpty()) {
-                res += i * 10 + numberStack.pop();
+        void calc(Deque<Integer> nums, Deque<Character> ops) {
+            if (nums.isEmpty() || nums.size() < 2) { return; }
+            if (ops.isEmpty()) { return; }
+            int b = nums.poll(), a = nums.poll();
+            char op = ops.poll();
+            int ans = 0;
+            if (op == '+') {
+                ans = a + b;
+            } else if (op == '-') {
+                ans = a - b;
+            } else if (op == '*') {
+                ans = a * b;
+            } else if (op == '/') {
+                ans = a / b;
+            } else if (op == '^') {
+                ans = (int)Math.pow(a, b);
+            } else if (op == '%') {
+                ans = a % b;
             }
-            return res;
+            nums.push(ans);
+        }
+
+        boolean isNumber(char c) {
+            return Character.isDigit(c);
         }
     }
+
     //leetcode submit region end(Prohibit modification and deletion)
 
 }

@@ -35,7 +35,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//Java：Partition Labels
+//Java：Partition Labels 数组 区间
+// 2021-08-21 review 1
 public class P763PartitionLabels {
     public static void main(String[] args) {
         Solution solution = new P763PartitionLabels().new Solution();

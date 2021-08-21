@@ -19,7 +19,8 @@ import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 
-//Java：Daily Temperatures
+//Java：Daily Temperatures 栈
+// 2021-08-21 review 1
 public class P739DailyTemperatures {
     public static void main(String[] args) {
         Solution solution = new P739DailyTemperatures().new Solution();

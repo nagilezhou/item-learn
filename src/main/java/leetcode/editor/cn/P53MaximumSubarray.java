@@ -52,7 +52,8 @@
 // 👍 2635 👎 0
 
 package leetcode.editor.cn;
-//Java：Maximum Subarray
+//Java：Maximum Subarray 滑动窗口+dp
+// 2021-08-01 review 1
 public class P53MaximumSubarray{
     public static void main(String[] args) {
         Solution solution = new P53MaximumSubarray().new Solution();

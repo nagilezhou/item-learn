@@ -53,7 +53,8 @@
 package leetcode.editor.cn;
 
 
-//Java：Linked List Cycle
+//Java：Linked List Cycle 链表 快慢指针
+// 2021-08-09 review 1
 public class P141LinkedListCycle{
     public static void main(String[] args) {
         Solution solution = new P141LinkedListCycle().new Solution();

@@ -58,7 +58,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Trim a Binary Search Tree
+//Java：Trim a Binary Search Tree 二叉树
+// 2021-08-21 review 1
 public class P669TrimABinarySearchTree {
     public static void main(String[] args) {
         Solution solution = new P669TrimABinarySearchTree().new Solution();

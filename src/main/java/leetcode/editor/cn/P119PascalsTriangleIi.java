@@ -34,7 +34,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//Java：Pascal's Triangle II
+//Java：Pascal's Triangle II dp
+// 2021-08-01 review 1
 public class P119PascalsTriangleIi{
     public static void main(String[] args) {
         Solution solution = new P119PascalsTriangleIi().new Solution();

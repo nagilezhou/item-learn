@@ -31,11 +31,12 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-//Java：Permutations
-public class P46Permutations{
+//Java：Permutations dfs+backtrack
+// 2021-08-01 review 1
+public class P46Permutations {
     public static void main(String[] args) {
         Solution solution = new P46Permutations().new Solution();
-        System.out.println(solution.permute(new int[] {1,2,3}).toString());
+        System.out.println(solution.permute(new int[] {1, 2, 3}).toString());
         // TO TEST
     }
 
@@ -47,29 +48,32 @@ public class P46Permutations{
             }
             List<List<Integer>> res = new ArrayList<>();
             Deque<Integer> temp = new LinkedList<>();
-            backtrack(nums, res, temp);
+            boolean[] used = new boolean[nums.length];
+            backtrack(nums, res, temp, used);
             return res;
         }
 
         // DFS
-        public void backtrack(int[] nums, List<List<Integer>> res, Deque<Integer> temp) {
+        public void backtrack(int[] nums, List<List<Integer>> res, Deque<Integer> temp, boolean[] used) {
             // 结束条件
-            if (temp.size() == nums.length ) {
+            if (temp.size() == nums.length) {
                 res.add(new ArrayList<>(temp));
                 return;
             }
             // DFS
             for (int i = 0; i < nums.length; i++) {
-                if(temp.contains(nums[i])){
+                if (used[i]) {
                     continue;
                 }
+                used[i] = true;
                 temp.addLast(nums[i]);
-                backtrack(nums, res, temp);
+                backtrack(nums, res, temp, used);
                 temp.removeLast();
+                used[i] = false;
             }
         }
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
 

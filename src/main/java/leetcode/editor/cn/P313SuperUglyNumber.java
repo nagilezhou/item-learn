@@ -40,9 +40,8 @@
 
 package leetcode.editor.cn;
 
-import java.util.Arrays;
-
-//Java：Super Ugly Number
+//Java：Super Ugly Number dp
+// 2021-08-17 review 1
 public class P313SuperUglyNumber {
     public static void main(String[] args) {
         Solution solution = new P313SuperUglyNumber().new Solution();

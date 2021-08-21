@@ -77,11 +77,12 @@
 
 package leetcode.editor.cn;
 
-//Java：Decode Ways
+//Java：Decode Ways dp
+// 2021-08-01 review 1
 public class P91DecodeWays {
     public static void main(String[] args) {
         Solution solution = new P91DecodeWays().new Solution();
-        System.out.println(solution.numDecodings("12"));
+        System.out.println(solution.numDecodings("102"));
         // TO TEST
     }
 

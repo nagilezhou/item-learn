@@ -37,7 +37,8 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-//Java：Permutations II
+//Java：Permutations II dfs+backtrack
+// 2021-08-01 review 1
 public class P47PermutationsIi{
     public static void main(String[] args) {
         Solution solution = new P47PermutationsIi().new Solution();
@@ -71,6 +72,8 @@ public class P47PermutationsIi{
                 if (used[i]) {
                     continue;
                 }
+                // 剪枝条件：i > 0 是为了保证 nums[i - 1] 有意义
+                // 写 !used[i - 1] 是因为 nums[i - 1] 在深度优先遍历的过程中刚刚被撤销选择
                 if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) {
                     continue;
                 }

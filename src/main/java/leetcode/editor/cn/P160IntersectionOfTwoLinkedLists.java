@@ -71,7 +71,8 @@
 package leetcode.editor.cn;
 
 
-//Java：Intersection of Two Linked Lists
+//Java：Intersection of Two Linked Lists 链表
+// 2021-08-11 review 1
 public class P160IntersectionOfTwoLinkedLists{
     public static void main(String[] args) {
         Solution solution = new P160IntersectionOfTwoLinkedLists().new Solution();

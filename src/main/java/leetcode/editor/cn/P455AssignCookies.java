@@ -47,7 +47,8 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：Assign Cookies
+//Java：Assign Cookies 数组 排序
+// 2021-08-21 review 1
 public class P455AssignCookies{
     public static void main(String[] args) {
         Solution solution = new P455AssignCookies().new Solution();

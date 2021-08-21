@@ -63,7 +63,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Number of Dice Rolls With Target Sum
+//Java：Number of Dice Rolls With Target Sum 分组背包
+// 2021-08-21 review 1
 public class P1155NumberOfDiceRollsWithTargetSum {
     public static void main(String[] args) {
         Solution solution = new P1155NumberOfDiceRollsWithTargetSum().new Solution();

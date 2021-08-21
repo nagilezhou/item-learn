@@ -61,7 +61,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-//Java：Maximum Number of Vowels in a Substring of Given Length
+//Java：Maximum Number of Vowels in a Substring of Given Length 字符串 滑动窗口
+// 2021-08-21 review 1
 public class P1456MaximumNumberOfVowelsInASubstringOfGivenLength{
     public static void main(String[] args) {
         Solution solution = new P1456MaximumNumberOfVowelsInASubstringOfGivenLength().new Solution();

@@ -42,6 +42,7 @@
 
 package leetcode.editor.cn;
 //Java：Longest Palindromic Substring
+// 2021-07-28 review 1
 public class P5LongestPalindromicSubstring{
     public static void main(String[] args) {
         Solution solution = new P5LongestPalindromicSubstring().new Solution();

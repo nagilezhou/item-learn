@@ -43,7 +43,8 @@ package leetcode.editor.cn;
 import java.util.HashMap;
 import java.util.Map;
 
-//Java：Maximum Product of Word Lengths
+//Java：Maximum Product of Word Lengths 位运算 哈希表
+// 2021-08-17 review 1
 public class P318MaximumProductOfWordLengths{
     public static void main(String[] args) {
         Solution solution = new P318MaximumProductOfWordLengths().new Solution();

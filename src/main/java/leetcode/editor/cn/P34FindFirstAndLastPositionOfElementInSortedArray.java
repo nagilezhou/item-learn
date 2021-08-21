@@ -32,17 +32,33 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：Find First and Last Position of Element in Sorted Array
+//Java：Find First and Last Position of Element in Sorted Array 二分
+// 2021-07-31 review 1
 public class P34FindFirstAndLastPositionOfElementInSortedArray {
     public static void main(String[] args) {
         Solution solution = new P34FindFirstAndLastPositionOfElementInSortedArray().new Solution();
         // TO TEST
-        int[] test = new int[]{1};
-        System.out.println(Arrays.toString(solution.searchRange(test,1)));
+        int[] test = new int[]{5,7,7,8,8,10};
+        System.out.println(Arrays.toString(solution.searchRange(test,8)));
+        System.out.println(solution.binarySearch(test,8));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        int binarySearch(int[] nums, int target) {
+            int low = 0;
+            int high = nums.length - 1;//这里要-1
+            while (low < high) {//这里取等于
+                int mid = low + high + 1 >> 1;
+                if (nums[mid] <= target) {
+                    low = mid;
+                } else {
+                    high = mid - 1;
+                }
+            }
+            return low;
+        }
+
         public int[] searchRange(int[] nums, int target) {
             int[] ans = new int[]{-1,-1};
             if(nums.length <= 0){

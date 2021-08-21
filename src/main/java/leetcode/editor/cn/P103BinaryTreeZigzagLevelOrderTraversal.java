@@ -42,7 +42,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-//Java：Binary Tree Zigzag Level Order Traversal
+//Java：Binary Tree Zigzag Level Order Traversal 二叉树+队列
+// 2021-08-07 review 1
 public class P103BinaryTreeZigzagLevelOrderTraversal{
     public static void main(String[] args) {
         Solution solution = new P103BinaryTreeZigzagLevelOrderTraversal().new Solution();

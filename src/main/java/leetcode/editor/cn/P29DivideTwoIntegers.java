@@ -53,11 +53,12 @@
 
 package leetcode.editor.cn;
 
-//Java：Divide Two Integers
+//Java：Divide Two Integers 二分
+// 2021-07-31 review 1
 public class P29DivideTwoIntegers {
     public static void main(String[] args) {
         Solution solution = new P29DivideTwoIntegers().new Solution();
-        System.out.println(solution.mul(10,9));
+        System.out.println(solution.divide(-7, 3));
         // TO TEST
     }
 
@@ -66,7 +67,9 @@ public class P29DivideTwoIntegers {
         public int divide(int dividend, int divisor) {
             long x = dividend, y = divisor;
             boolean isNeg = false;
-            if ((x > 0 && y < 0) || (x < 0 && y > 0)) { isNeg = true; }
+            if ((x > 0 && y < 0) || (x < 0 && y > 0)) {
+                isNeg = true;
+            }
             if (x < 0) { x = -x; }
             if (y < 0) { y = -y; }
             long l = 0, r = x;
@@ -88,7 +91,9 @@ public class P29DivideTwoIntegers {
         long mul(long a, long k) {
             long ans = 0;
             while (k > 0) {
-                if ((k & 1) == 1) { ans += a; }
+                if ((k & 1) == 1) {
+                    ans += a;
+                }
                 k >>= 1;
                 a += a;
             }

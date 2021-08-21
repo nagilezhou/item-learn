@@ -48,7 +48,8 @@
 // 👍 540 👎 0
 
 package leetcode.editor.cn;
-//Java：Longest Common Subsequence
+//Java：Longest Common Subsequence dp
+// 2021-08-21 review 1
 public class P1143LongestCommonSubsequence{
     public static void main(String[] args) {
         Solution solution = new P1143LongestCommonSubsequence().new Solution();

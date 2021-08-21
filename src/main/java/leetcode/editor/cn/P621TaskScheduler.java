@@ -60,7 +60,8 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：Task Scheduler
+//Java：Task Scheduler 贪心
+// 2021-08-21 review 1
 public class P621TaskScheduler {
     public static void main(String[] args) {
         Solution solution = new P621TaskScheduler().new Solution();

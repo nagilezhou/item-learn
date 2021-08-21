@@ -60,7 +60,8 @@ package leetcode.editor.cn;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//Java：Course Schedule II
+//Java：Course Schedule II 拓扑排序
+// 2021-08-14 review 1
 public class P210CourseScheduleIi{
     public static void main(String[] args) {
         Solution solution = new P210CourseScheduleIi().new Solution();

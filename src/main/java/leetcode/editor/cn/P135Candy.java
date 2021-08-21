@@ -52,8 +52,16 @@ public class P135Candy{
     public static void main(String[] args) {
         Solution solution = new P135Candy().new Solution();
         // TO TEST
-        System.out.println(solution.candy(new int[]{1,3,4,5,2}));
+        System.out.println(solution.candy(new int[]{1,2,2,5,4,1}));
     }
+
+    //我们取序列中的任意两点，A B
+    //
+    //如果 A > B ,则按照左规则处理后，B不会比A多；按照右规则处理后，A一定比B多，那么A一定会被更新（变大），但L、R规则仍然成立：B不会比A多，A一定比B多；
+    //同理可讨论 A<B;
+    //当 A == B，A、B的值无论如何更新，都不影响 L、R规则
+    //综上，取最大值后不影响某一规则的成立。
+
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int candy(int[] ratings) {

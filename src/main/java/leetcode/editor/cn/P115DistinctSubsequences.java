@@ -45,7 +45,8 @@
 // 👍 548 👎 0
 
 package leetcode.editor.cn;
-//Java：Distinct Subsequences
+//Java：Distinct Subsequences 动态规划 双字符串
+// 2021-08-01 review 1
 public class P115DistinctSubsequences{
     public static void main(String[] args) {
         Solution solution = new P115DistinctSubsequences().new Solution();

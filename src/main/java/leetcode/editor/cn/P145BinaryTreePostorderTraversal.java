@@ -62,7 +62,8 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-//Java：Binary Tree Postorder Traversal
+//Java：Binary Tree Postorder Traversal 二叉树 后序遍历
+// 2021-08-09 review 1
 public class P145BinaryTreePostorderTraversal{
     public static void main(String[] args) {
         Solution solution = new P145BinaryTreePostorderTraversal().new Solution();
@@ -92,6 +93,7 @@ class Solution {
         }
 
         Deque<TreeNode> stack = new LinkedList<TreeNode>();
+        // prev指针用来标记该节点的右子树已经访问过
         TreeNode prev = null;
         while (root != null || !stack.isEmpty()) {
             while (root != null) {

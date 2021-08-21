@@ -36,7 +36,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-//Java：Longest Consecutive Sequence
+//Java：Longest Consecutive Sequence 哈希表
+// 2021-08-07 review 1
 public class P128LongestConsecutiveSequence{
     public static void main(String[] args) {
         Solution solution = new P128LongestConsecutiveSequence().new Solution();

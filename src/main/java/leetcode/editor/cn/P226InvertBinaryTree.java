@@ -34,12 +34,8 @@
 
 package leetcode.editor.cn;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
-//Java：Invert Binary Tree
+//Java：Invert Binary Tree 二叉树
+// 2021-08-14 review 1
 public class P226InvertBinaryTree {
     public static void main(String[] args) {
         Solution solution = new P226InvertBinaryTree().new Solution();

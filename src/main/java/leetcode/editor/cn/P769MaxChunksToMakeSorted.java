@@ -39,7 +39,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Max Chunks To Make Sorted
+//Java：Max Chunks To Make Sorted 数组
+// 2021-08-21 review 1
 public class P769MaxChunksToMakeSorted {
     public static void main(String[] args) {
         Solution solution = new P769MaxChunksToMakeSorted().new Solution();

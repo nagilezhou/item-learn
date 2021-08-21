@@ -27,7 +27,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Can Place Flowers
+//Java：Can Place Flowers 贪心 数组
+// 2021-08-21 review 1
 public class P605CanPlaceFlowers {
     public static void main(String[] args) {
         Solution solution = new P605CanPlaceFlowers().new Solution();

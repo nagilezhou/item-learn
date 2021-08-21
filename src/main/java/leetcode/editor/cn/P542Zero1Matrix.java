@@ -38,7 +38,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//Java：01 Matrix
+//Java：01 Matrix 矩阵 bfs dp
+// 2021-08-21 review 1
 public class P542Zero1Matrix {
     public static void main(String[] args) {
         Solution solution = new P542Zero1Matrix().new Solution();
@@ -81,68 +82,37 @@ public class P542Zero1Matrix {
         }
 
         public int[][] updateMatrix(int[][] mat) {
-            int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
             int m = mat.length, n = mat[0].length;
-            // 初始化动态规划的数组，所有的距离值都设置为一个很大的数
-            int[][] dist = new int[m][n];
-            for (int row = 0; row < m; ++row) {
-                Arrays.fill(dist[row], Integer.MAX_VALUE / 2);
-            }
-            // 如果 (row, col) 的元素为 0，那么距离为 0
-            for (int row = 0; row < m; ++row) {
-                for (int col = 0; col < n; ++col) {
-                    if (mat[row][col] == 0) {
-                        dist[row][col] = 0;
-                    }
+            int[][] dp = new int[m][n];
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    dp[i][j] = mat[i][j] == 0 ? 0 : 10000;
                 }
             }
 
-
-            // 只有 水平向左移动 和 竖直向上移动，注意动态规划的计算顺序
-            for (int row = 0; row < m; ++row) {
-                for (int col = 0; col < n; ++col) {
-                    if (row - 1 >= 0) {
-                        dist[row][col] = Math.min(dist[row][col], dist[row - 1][col] + 1);
+            // 从左上角开始
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (i - 1 >= 0) {
+                        dp[i][j] = Math.min(dp[i][j], dp[i - 1][j] + 1);
                     }
-                    if (col - 1 >= 0) {
-                        dist[row][col] = Math.min(dist[row][col], dist[row][col - 1] + 1);
-                    }
-                }
-            }
-            // 只有 水平向左移动 和 竖直向下移动，注意动态规划的计算顺序
-            for (int row = m - 1; row >= 0; --row) {
-                for (int col = 0; col < n; ++col) {
-                    if (row + 1 < m) {
-                        dist[row][col] = Math.min(dist[row][col], dist[row + 1][col] + 1);
-                    }
-                    if (col - 1 >= 0) {
-                        dist[row][col] = Math.min(dist[row][col], dist[row][col - 1] + 1);
+                    if (j - 1 >= 0) {
+                        dp[i][j] = Math.min(dp[i][j], dp[i][j - 1] + 1);
                     }
                 }
             }
-            // 只有 水平向右移动 和 竖直向上移动，注意动态规划的计算顺序
-            for (int row = 0; row < m; ++row) {
-                for (int col = n - 1; col >= 0; --col) {
-                    if (row - 1 >= 0) {
-                        dist[row][col] = Math.min(dist[row][col], dist[row - 1][col] + 1);
+            // 从右下角开始
+            for (int i = m - 1; i >= 0; i--) {
+                for (int j = n - 1; j >= 0; j--) {
+                    if (i + 1 < m) {
+                        dp[i][j] = Math.min(dp[i][j], dp[i + 1][j] + 1);
                     }
-                    if (col + 1 < n) {
-                        dist[row][col] = Math.min(dist[row][col], dist[row][col + 1] + 1);
-                    }
-                }
-            }
-            // 只有 水平向右移动 和 竖直向下移动，注意动态规划的计算顺序
-            for (int row = m - 1; row >= 0; --row) {
-                for (int col = n - 1; col >= 0; --col) {
-                    if (row + 1 < m) {
-                        dist[row][col] = Math.min(dist[row][col], dist[row + 1][col] + 1);
-                    }
-                    if (col + 1 < n) {
-                        dist[row][col] = Math.min(dist[row][col], dist[row][col + 1] + 1);
+                    if (j + 1 < n) {
+                        dp[i][j] = Math.min(dp[i][j], dp[i][j + 1] + 1);
                     }
                 }
             }
-            return dist;
+            return dp;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

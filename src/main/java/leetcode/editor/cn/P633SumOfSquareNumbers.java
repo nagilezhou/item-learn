@@ -49,7 +49,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Sum of Square Numbers
+//Java：Sum of Square Numbers 二分
+// 2021-08-21 review 1
 public class P633SumOfSquareNumbers {
     public static void main(String[] args) {
         Solution solution = new P633SumOfSquareNumbers().new Solution();

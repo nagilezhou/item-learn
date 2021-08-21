@@ -35,7 +35,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Out of Boundary Paths
+//Java：Out of Boundary Paths dp
+// 2021-08-21 review 1
 public class P576OutOfBoundaryPaths {
     public static void main(String[] args) {
         Solution solution = new P576OutOfBoundaryPaths().new Solution();

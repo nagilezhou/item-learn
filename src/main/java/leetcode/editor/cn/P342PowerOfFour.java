@@ -28,7 +28,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Power of Four
+//Java：Power of Four 位运算
+// 2021-08-17 review 1
 public class P342PowerOfFour {
     public static void main(String[] args) {
         Solution solution = new P342PowerOfFour().new Solution();

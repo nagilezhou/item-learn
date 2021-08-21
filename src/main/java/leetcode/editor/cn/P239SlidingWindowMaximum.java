@@ -65,7 +65,8 @@ package leetcode.editor.cn;
 
 import java.util.LinkedList;
 
-//Java：Sliding Window Maximum
+//Java：Sliding Window Maximum 滑动窗口 单调队列
+// 2021-08-14 review 1
 public class P239SlidingWindowMaximum {
     public static void main(String[] args) {
         Solution solution = new P239SlidingWindowMaximum().new Solution();

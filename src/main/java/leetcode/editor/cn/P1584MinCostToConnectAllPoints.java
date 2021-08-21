@@ -66,7 +66,8 @@ package leetcode.editor.cn;
 import java.util.ArrayList;
 import java.util.List;
 
-//Java：Min Cost to Connect All Points
+//Java：Min Cost to Connect All Points 图
+// 2021-08-21 review 1
 public class P1584MinCostToConnectAllPoints {
     public static void main(String[] args) {
         Solution solution = new P1584MinCostToConnectAllPoints().new Solution();

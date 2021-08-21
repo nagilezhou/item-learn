@@ -77,7 +77,8 @@ package leetcode.editor.cn;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//Java：Snakes and Ladders
+//Java：Snakes and Ladders bfs
+// 2021-08-21 review 1
 public class P909SnakesAndLadders {
     public static void main(String[] args) {
         Solution solution = new P909SnakesAndLadders().new Solution();

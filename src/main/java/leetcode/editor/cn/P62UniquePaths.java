@@ -53,7 +53,8 @@
 // 👍 957 👎 0
 
 package leetcode.editor.cn;
-//Java：Unique Paths
+//Java：Unique Paths 路径dp
+// 2021-08-01 review 1
 public class P62UniquePaths{
     public static void main(String[] args) {
         Solution solution = new P62UniquePaths().new Solution();

@@ -44,7 +44,8 @@
 package leetcode.editor.cn;
 
 
-//Java：Maximum Depth of Binary Tree
+//Java：Maximum Depth of Binary Tree 二叉树 后序遍历
+// 2021-08-07 review 1
 public class P104MaximumDepthOfBinaryTree{
     public static void main(String[] args) {
         Solution solution = new P104MaximumDepthOfBinaryTree().new Solution();

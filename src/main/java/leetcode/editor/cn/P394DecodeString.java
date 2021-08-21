@@ -39,59 +39,43 @@
 
 package leetcode.editor.cn;
 
-import java.util.Deque;
-import java.util.LinkedList;
-
-//Java：Decode String
-public class P394DecodeString{
+//Java：Decode String 栈 递归
+// 2021-08-17 review 1
+public class P394DecodeString {
     public static void main(String[] args) {
         Solution solution = new P394DecodeString().new Solution();
         // TO TEST
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-        //public String decodeString(String s) {
-        //    if (s == null || s.length() == 0) {
-        //        return s;
-        //    }
-        //    StringBuilder result = new StringBuilder();
-        //    int multi = 0;
-        //    Deque<StringBuilder> strStack = new LinkedList<>();
-        //    Deque<Integer> numStack = new LinkedList<>();
-        //    for (char c : s.toCharArray()) {
-        //        if (c >= 'a' && c <= 'z') {
-        //            result.append(c);
-        //        }
-        //        if (c >= '0' && c <= '9') {
-        //            multi = multi * 10 + Integer.parseInt(String.valueOf(c));
-        //        }
-        //        if ('[' == c) {
-        //            numStack.push(multi);
-        //            strStack.push(new StringBuilder(result));
-        //            multi = 0;
-        //            result = new StringBuilder();
-        //        }
-        //        if (']' == c) {
-        //            StringBuilder temp = new StringBuilder();
-        //            int repeatNum = numStack.pop();
-        //            for (int i = 0; i < repeatNum; i++) {
-        //                temp.append(result);
-        //            }
-        //            result = new StringBuilder(strStack.pop().append(temp));
-        //        }
-        //    }
-        //    return result.toString();
-        //}
+    class Solution {
+        public String decodeString(String s) {
+            return dfs(s, 0)[0];
+        }
 
-        //public String decodeString(String s) {
-        //    return recursionDecodeString(s, 0)[0];
-        //}
+        private String[] dfs(String s, int i) {
+            StringBuilder res = new StringBuilder();
+            int multi = 0;
+            while (i < s.length()) {
+                if (s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+                    multi = multi * 10 + Integer.parseInt(String.valueOf(s.charAt(i)));
+                } else if (s.charAt(i) == '[') {
+                    String[] tmp = dfs(s, i + 1);
+                    i = Integer.parseInt(tmp[0]);
+                    while (multi > 0) {
+                        res.append(tmp[1]);
+                        multi--;
+                    }
+                } else if (s.charAt(i) == ']') { return new String[] {String.valueOf(i), res.toString()}; } else {
+                    res.append(s.charAt(i));
+                }
+                i++;
+            }
+            return new String[] {res.toString()};
+        }
 
-        //public String [] recursionDecodeString(String s, int length){
-        //
-        //}
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
 

@@ -54,7 +54,8 @@ package leetcode.editor.cn;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-//Java：Queue Reconstruction by Height
+//Java：Queue Reconstruction by Height 区间数组
+// 2021-08-21 review 1
 public class P406QueueReconstructionByHeight{
     public static void main(String[] args) {
         Solution solution = new P406QueueReconstructionByHeight().new Solution();

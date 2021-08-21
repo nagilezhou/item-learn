@@ -30,7 +30,8 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：Minimum Window Substring
+//Java：Minimum Window Substring 滑动窗口
+// 2021-08-01 review 1
 public class P76MinimumWindowSubstring {
     public static void main(String[] args) {
         Solution solution = new P76MinimumWindowSubstring().new Solution();

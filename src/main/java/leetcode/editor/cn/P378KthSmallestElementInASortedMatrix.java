@@ -37,7 +37,8 @@
 // 👍 606 👎 0
 
 package leetcode.editor.cn;
-//Java：Kth Smallest Element in a Sorted Matrix
+//Java：Kth Smallest Element in a Sorted Matrix 二分
+// 2021-08-17 review 1
 public class P378KthSmallestElementInASortedMatrix{
     public static void main(String[] args) {
         Solution solution = new P378KthSmallestElementInASortedMatrix().new Solution();

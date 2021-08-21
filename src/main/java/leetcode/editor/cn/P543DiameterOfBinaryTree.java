@@ -35,7 +35,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Diameter of Binary Tree
+//Java：Diameter of Binary Tree 二叉树 dfs
+// 2021-08-21 review 1
 public class P543DiameterOfBinaryTree {
     public static void main(String[] args) {
         Solution solution = new P543DiameterOfBinaryTree().new Solution();

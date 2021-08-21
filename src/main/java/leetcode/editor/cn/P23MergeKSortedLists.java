@@ -53,6 +53,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 //Java：Merge k Sorted Lists
+// 2021-07-30 review 1
 public class P23MergeKSortedLists {
     public static void main(String[] args) {
         Solution solution = new P23MergeKSortedLists().new Solution();

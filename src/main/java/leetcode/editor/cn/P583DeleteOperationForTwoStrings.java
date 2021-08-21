@@ -32,10 +32,8 @@
 
 package leetcode.editor.cn;
 
-import java.util.HashMap;
-import java.util.Map;
-
-//Java：Delete Operation for Two Strings
+//Java：Delete Operation for Two Strings dp
+// 2021-08-21 review 1
 public class P583DeleteOperationForTwoStrings {
     public static void main(String[] args) {
         Solution solution = new P583DeleteOperationForTwoStrings().new Solution();

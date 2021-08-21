@@ -83,57 +83,53 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：Count All Possible Routes
-public class P1575CountAllPossibleRoutes{
+//Java：Count All Possible Routes 数组 dp
+// 2021-08-21 review 1
+public class P1575CountAllPossibleRoutes {
     public static void main(String[] args) {
         Solution solution = new P1575CountAllPossibleRoutes().new Solution();
-        System.out.println(solution.countRoutes(new int[]{46,75,85,43,62,92,22,89,107,73,98,93,36,32,81,101,71,109,11,56,13,54,86,80,44,66,14,9,23,84,91,16,17,33,64,7,60},22,4,50));
+        System.out.println(solution.countRoutes(
+            new int[] {46, 75, 85, 43, 62, 92, 22, 89, 107, 73, 98, 93, 36, 32, 81, 101, 71, 109, 11, 56, 13, 54, 86,
+                80, 44, 66, 14, 9, 23, 84, 91, 16, 17, 33, 64, 7, 60}, 22, 4, 50));
         // TO TEST
     }
-    //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
 
-    public int countRoutes(int[] locations, int start, int finish, int fuel) {
-        int n = locations.length;
-        int[][] dp = new int[n][fuel + 1];
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
         int mod = 1000000007;
 
-        for(int i = 0; i < n; i++){
-            Arrays.fill(dp[i], -1);
-        }
-        dp[start][fuel] = 1;
+        public int countRoutes(int[] ls, int start, int end, int fuel) {
+            int n = ls.length;
 
-        for(int i = fuel; i >= 0; i--){
-            for(int j = 0; j < n; j++){
-                for(int z = 0; z < n; z++){
-                    if(j == z){
-                        continue;
+            // dp[i][j] 代表从位置 i 出发，当前油量为 j 时，到达目的地的路径数
+            int[][] dp = new int[n][fuel + 1];
+
+            // 对于本身位置就在目的地的状态，路径数为 1
+            for (int i = 0; i <= fuel; i++) { dp[end][i] = 1; }
+
+            // 从状态转移方程可以发现 dp[i][fuel]=dp[i][fuel]+dp[k][fuel-need]
+            // 在计算 dp[i][fuel] 的时候依赖于 dp[k][fuel-need]
+            // 其中 i 和 k 并无严格的大小关系
+            // 而 fuel 和 fuel-need 具有严格大小关系：fuel >= fuel-need
+            // 因此需要先从小到大枚举油量
+            for (int cur = 0; cur <= fuel; cur++) {
+                for (int i = 0; i < n; i++) {
+                    for (int k = 0; k < n; k++) {
+                        if (i != k) {
+                            int need = Math.abs(ls[i] - ls[k]);
+                            if (cur >= need) {
+                                dp[i][cur] += dp[k][cur - need];
+                                dp[i][cur] %= mod;
+                            }
+                        }
                     }
-                    int abs = Math.abs(locations[j] - locations[z]);
-                    int tmpFuel = i + abs;
-                    if(tmpFuel > fuel || dp[z][tmpFuel] == -1){
-                        continue;
-                    }
-                    if(dp[j][i] == -1){
-                        dp[j][i] = 0;
-                    }
-                    dp[j][i] += dp[z][tmpFuel];
-                    dp[j][i] %= mod;
                 }
             }
+            return dp[start][fuel];
         }
-        int res = 0;
-        for(int i = 0; i <= fuel; i++){
-            if(dp[finish][i] == -1){
-                continue;
-            }
-            res += dp[finish][i];
-            res %= mod;
-        }
-        return res;
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
 

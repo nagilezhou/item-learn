@@ -54,7 +54,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-//Java：Word Break
+//Java：Word Break dp bfs
+// 2021-08-09 review 1
 public class P139WordBreak {
     public static void main(String[] args) {
         Solution solution = new P139WordBreak().new Solution();
@@ -67,7 +68,7 @@ public class P139WordBreak {
     class Solution {
 
         // bfs
-        public boolean wordBreak(String s, List<String> wordDict) {
+        public boolean wordBreak2(String s, List<String> wordDict) {
             for (String word : wordDict) {
                 addWord(word);
             }
@@ -79,8 +80,8 @@ public class P139WordBreak {
             visit[0] = true;
 
             while (!queue.isEmpty()) {
-                int from = queue.poll();
-                List<Integer> endList = searchPrefixes(s.toCharArray(), from);
+                int temp = queue.poll();
+                List<Integer> endList = searchPrefixes(s.toCharArray(), temp);
                 for (int end : endList) {
                     if (end == len - 1) {
                         return true;
@@ -129,25 +130,53 @@ public class P139WordBreak {
             }
             curr.end = true;
         }
+
+
+
+        // dfs + backtrack 超时
+        public boolean wordBreak(String s, List<String> wordDict) {
+            List<String> ans = new ArrayList<>();
+            return backtrack(s, 0, wordDict, ans);
+        }
+
+        public boolean backtrack(String s, int i, List<String> wordDict, List<String> ans) {
+            if (s.length() == i) {
+                return true;
+            }
+            boolean found = false;
+            for (int j = i; j < s.length(); j++) {
+                String temp = s.substring(i, j + 1);
+                if (wordDict.contains(temp)) {
+                    ans.add(temp);
+                    if(backtrack(s, j + 1, wordDict, ans)){
+                        found = true;
+                        break;
+                    }
+                    ans.remove(ans.size() - 1);
+                }
+            }
+            return found;
+        }
+
+
+        // dp
+        public boolean wordBreak3(String s, List<String> wordDict) {
+            Set<String> wordDictSet = new HashSet<>(wordDict);
+            boolean[] dp = new boolean[s.length() + 1];
+            dp[0] = true;
+            for (int i = 1; i <= s.length(); i++) {
+                for (int j = 0; j < i; j++) {
+                    if (dp[j] && wordDictSet.contains(s.substring(j, i))) {
+                        dp[i] = true;
+                        break;
+                    }
+                }
+            }
+            return dp[s.length()];
+        }
     }
 
     //leetcode submit region end(Prohibit modification and deletion)
-
-    // dp
-    public boolean wordBreak2(String s, List<String> wordDict) {
-        Set<String> wordDictSet = new HashSet<>(wordDict);
-        boolean[] dp = new boolean[s.length() + 1];
-        dp[0] = true;
-        for (int i = 1; i <= s.length(); i++) {
-            for (int j = 0; j < i; j++) {
-                if (dp[j] && wordDictSet.contains(s.substring(j, i))) {
-                    dp[i] = true;
-                    break;
-                }
-            }
-        }
-        return dp[s.length()];
-    }
 }
 
 

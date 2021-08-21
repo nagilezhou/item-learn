@@ -29,7 +29,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Single Number
+//Java：Single Number 位运算
+// 2021-08-09 review 1
 public class P136SingleNumber {
     public static void main(String[] args) {
         Solution solution = new P136SingleNumber().new Solution();

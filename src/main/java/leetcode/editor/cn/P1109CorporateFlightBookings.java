@@ -53,7 +53,8 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：Corporate Flight Bookings
+//Java：Corporate Flight Bookings 数组 差分
+// 2021-08-21 review 1
 public class P1109CorporateFlightBookings {
     public static void main(String[] args) {
         Solution solution = new P1109CorporateFlightBookings().new Solution();

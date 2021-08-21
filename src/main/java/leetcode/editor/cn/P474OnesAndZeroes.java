@@ -40,7 +40,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Ones and Zeroes
+//Java：Ones and Zeroes dp 01背包
+// 2021-08-21 review 1
 public class P474OnesAndZeroes {
     public static void main(String[] args) {
         Solution solution = new P474OnesAndZeroes().new Solution();

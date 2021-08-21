@@ -37,7 +37,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Find Peak Element
+//Java：Find Peak Element 二分
+// 2021-08-12 review 1
 public class P162FindPeakElement {
     public static void main(String[] args) {
         Solution solution = new P162FindPeakElement().new Solution();
@@ -50,31 +51,15 @@ public class P162FindPeakElement {
         public int findPeakElement(int[] nums) {
             int low = 0;
             int high = nums.length - 1;
-            while (true){
-                int mid = low + (high - low) / 2;
-                long target = nums[mid];
-                long left;
-                if(mid - 1 >= 0){
-                    left = nums[mid - 1];
+            while (low < high){
+                int mid = low + high >> 1;
+                if(nums[mid] >= nums[mid + 1]){
+                    high = mid;
                 }else {
-                    left = Long.MIN_VALUE;
-                }
-                long right;
-                if(mid + 1 < nums.length){
-                    right = nums[mid + 1];
-                }else {
-                    right = Long.MIN_VALUE;
-                }
-                if(left < target && target > right){
-                    return mid;
-                }
-                if(left < target && right > target){
                     low = mid + 1;
                 }
-                if(target < left){
-                    high = mid - 1;
-                }
             }
+            return low;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

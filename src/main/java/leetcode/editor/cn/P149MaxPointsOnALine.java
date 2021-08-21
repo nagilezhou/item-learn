@@ -34,7 +34,8 @@ package leetcode.editor.cn;
 import java.util.HashMap;
 import java.util.Map;
 
-//Java：Max Points on a Line
+//Java：Max Points on a Line 哈希表 斜率
+// 2021-08-11 review 1
 public class P149MaxPointsOnALine {
     public static void main(String[] args) {
         Solution solution = new P149MaxPointsOnALine().new Solution();

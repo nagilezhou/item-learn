@@ -51,11 +51,11 @@
 
 package leetcode.editor.cn;
 
-import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.LinkedList;
 
-//Java：Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit
+//Java：Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit 数组 动态规划 栈
+// 2021-08-21 review 1
 public class P1438LongestContinuousSubarrayWithAbsoluteDiffLessThanOrEqualToLimit {
     public static void main(String[] args) {
         Solution solution = new P1438LongestContinuousSubarrayWithAbsoluteDiffLessThanOrEqualToLimit().new Solution();

@@ -45,7 +45,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Two Sum II - Input array is sorted
+//Java：Two Sum II - Input array is sorted 数组 双指针
+// 2021-08-12 review 1
 public class P167TwoSumIiInputArrayIsSorted {
     public static void main(String[] args) {
         Solution solution = new P167TwoSumIiInputArrayIsSorted().new Solution();

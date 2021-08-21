@@ -32,7 +32,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Max Consecutive Ones III
+//Java：Max Consecutive Ones III 数组 滑动窗口
+// 2021-08-21 review 1
 public class P1004MaxConsecutiveOnesIii {
     public static void main(String[] args) {
         Solution solution = new P1004MaxConsecutiveOnesIii().new Solution();

@@ -33,9 +33,11 @@ import java.util.List;
 import com.sun.org.apache.regexp.internal.RE;
 
 //Java：3Sum
+// 2021-07-30 review 1
 public class P15ThreeSum {
     public static void main(String[] args) {
         Solution solution = new P15ThreeSum().new Solution();
+        System.out.println(solution.threeSum(new int[]{1,2,3,4,42,-1,-34,-342,-3,2,-3,-1,-1,-1,-2,-3,-4,-5,-6,-7,-8}));
         // TO TEST
     }
 

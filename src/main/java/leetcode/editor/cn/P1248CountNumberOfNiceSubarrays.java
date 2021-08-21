@@ -41,7 +41,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Count Number of Nice Subarrays
+//Java：Count Number of Nice Subarrays 数组 滑动窗口
+// 2021-08-21 review 1
 public class P1248CountNumberOfNiceSubarrays{
     public static void main(String[] args) {
         Solution solution = new P1248CountNumberOfNiceSubarrays().new Solution();

@@ -66,11 +66,11 @@
 
 package leetcode.editor.cn;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-//Java：Valid Sudoku
+//Java：Valid Sudoku 哈希表
+// 2021-08-01 review 1
 public class P36ValidSudoku {
     public static void main(String[] args) {
         Solution solution = new P36ValidSudoku().new Solution();

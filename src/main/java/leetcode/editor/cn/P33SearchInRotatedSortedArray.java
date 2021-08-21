@@ -37,52 +37,62 @@
 
 package leetcode.editor.cn;
 
-//Java：Search in Rotated Sorted Array
+//Java：Search in Rotated Sorted Array 二分
+// 2021-07-31 review 1
 public class P33SearchInRotatedSortedArray {
     public static void main(String[] args) {
         Solution solution = new P33SearchInRotatedSortedArray().new Solution();
-        System.out.println(solution.search(new int[] {1, 2, 3, 4, 5, 6, 7}, 2));
-        System.out.println(solution.search(new int[] {4, 5, 6, 7, 1, 2, 3}, 2));
-        System.out.println(solution.search(new int[] {5, 6, 7, 1, 2, 3, 4}, 2));
+        //System.out.println(solution.search(new int[] {1, 2, 3, 4, 5, 6, 7}, 2));
+        System.out.println(solution.search(new int[] {4,5,6,7,0,1,2}, 0));
+        //System.out.println(solution.search(new int[] {5, 6, 7, 1, 2, 3, 4}, 2));
         // TO TEST
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
         public int search(int[] nums, int target) {
-            int low = 0;
-            int high = nums.length - 1;
+            int n = nums.length;
+            if (n == 0) {
+                return -1;
+            }
+            if (n == 1) {
+                return nums[0] == target ? 0 : -1;
+            }
+
+            // 第一次「二分」：从中间开始找，找到满足 >=nums[0] 的分割点（旋转点）
+            int low = 0, high = n;
             while (low < high) {
-                int mid = low + (high - low) / 2;
-                if (nums[mid] < nums[high]) {
+                int mid = low + high >> 1;
+                if (nums[0] > nums[mid]) {
                     high = mid;
                 } else {
                     low = mid + 1;
                 }
             }
 
-            int res = findTarget(nums, low, nums.length - 1, target);
-            if(res == -1){
-                res = findTarget(nums, 0, low, target);;
+            // 第二次「二分」：通过和 nums[0] 进行比较，得知 target 是在旋转点的左边还是右边
+            if (target >= nums[0]) {
+                high = low - 1;
+                low = 0;
+            } else {
+                //low = low ;
+                high = n - 1;
             }
-           return res;
-        }
-
-        private int findTarget(int[] nums, int start, int end, int target) {
-            int low = start;
-            int high = end;
-            int mid;
             while (low < high) {
-                mid = low + ((high - low) >> 1);
-                if (target > nums[mid]) {
-                    low = mid + 1;
-                } else {
+                int mid = low + high >> 1;
+                if (nums[mid] >= target) {
                     high = mid;
+                } else {
+                    low = mid + 1;
                 }
             }
-            return target == nums[low] ? low : -1;
+
+            return nums[high] == target ? high : -1;
         }
+
     }
+
     //leetcode submit region end(Prohibit modification and deletion)
 
 }

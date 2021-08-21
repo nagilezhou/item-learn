@@ -39,7 +39,8 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：Jump Game II
+//Java：Jump Game II 贪心
+// 2021-08-01 review 1
 public class P45JumpGameIi {
     public static void main(String[] args) {
         Solution solution = new P45JumpGameIi().new Solution();

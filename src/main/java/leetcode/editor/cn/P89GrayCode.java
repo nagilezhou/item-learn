@@ -53,7 +53,8 @@ package leetcode.editor.cn;
 import java.util.ArrayList;
 import java.util.List;
 
-//Java：Gray Code
+//Java：Gray Code 公式
+// 2021-08-01 review 1
 public class P89GrayCode {
     public static void main(String[] args) {
         Solution solution = new P89GrayCode().new Solution();

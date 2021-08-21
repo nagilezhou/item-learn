@@ -26,9 +26,8 @@
 
 package leetcode.editor.cn;
 
-import java.util.Arrays;
-
-//Java：Reverse String II
+//Java：Reverse String II 字符串
+// 2021-08-21 review 1
 public class P541ReverseStringIi {
     public static void main(String[] args) {
         Solution solution = new P541ReverseStringIi().new Solution();

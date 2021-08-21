@@ -58,6 +58,7 @@
 package leetcode.editor.cn;
 
 //Java：ZigZag Conversion
+// 2021-07-28 review 1
 public class P6ZigzagConversion {
     public static void main(String[] args) {
         Solution solution = new P6ZigzagConversion().new Solution();

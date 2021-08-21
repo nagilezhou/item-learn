@@ -45,7 +45,8 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：Count Sorted Vowel Strings
+//Java：Count Sorted Vowel Strings dp
+// 2021-08-21 review 1
 public class P1641CountSortedVowelStrings {
     public static void main(String[] args) {
         Solution solution = new P1641CountSortedVowelStrings().new Solution();

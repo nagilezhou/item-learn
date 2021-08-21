@@ -31,7 +31,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Partition Equal Subset Sum
+//Java：Partition Equal Subset Sum dp 01背包
+// 2021-08-21 review 1
 public class P416PartitionEqualSubsetSum {
     public static void main(String[] args) {
         Solution solution = new P416PartitionEqualSubsetSum().new Solution();

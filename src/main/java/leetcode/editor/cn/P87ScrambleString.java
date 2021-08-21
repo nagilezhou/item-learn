@@ -66,7 +66,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Scramble String
+//Java：Scramble String dp
+// 2021-08-01 review 1
 public class P87ScrambleString {
     public static void main(String[] args) {
         Solution solution = new P87ScrambleString().new Solution();

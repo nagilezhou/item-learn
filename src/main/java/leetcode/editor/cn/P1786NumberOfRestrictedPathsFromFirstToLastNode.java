@@ -64,7 +64,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-//Java：Number of Restricted Paths From First to Last Node
+//Java：Number of Restricted Paths From First to Last Node 图 dijkstra
+// 2021-08-21 review 1
 public class P1786NumberOfRestrictedPathsFromFirstToLastNode {
     public static void main(String[] args) {
         Solution solution = new P1786NumberOfRestrictedPathsFromFirstToLastNode().new Solution();

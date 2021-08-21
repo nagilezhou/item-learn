@@ -39,31 +39,36 @@
 // 👍 293 👎 0
 
 package leetcode.editor.cn;
-//Java：Longest Palindrome
-public class P409LongestPalindrome{
+
+//Java：Longest Palindrome 贪心
+public class P409LongestPalindrome {
     public static void main(String[] args) {
         Solution solution = new P409LongestPalindrome().new Solution();
         System.out.println(solution.longestPalindrome("abccccdd"));
         // TO TEST
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int longestPalindrome(String s) {
-        int length = s.length();
-        boolean dp[][] = new boolean[length][length];
-        int res = 0;
-        for(int i = 0; i < length; i++){
-            for(int j = 0; j <= i; j++){
-                if((s.charAt(i) == s.charAt(j) && (i - j <= 2 || dp[j + 1][i - 1]))){
-                    dp[j][i] = true;
-                    res++;
+    class Solution {
+        public int longestPalindrome(String s) {
+            int[] count = new int[128];
+            int length = s.length();
+            for (int i = 0; i < length; ++i) {
+                char c = s.charAt(i);
+                count[c]++;
+            }
+
+            int ans = 0;
+            for (int v : count) {
+                ans += v / 2 * 2;
+                if (v % 2 == 1 && ans % 2 == 0) {
+                    ans++;
                 }
             }
+            return ans;
         }
-        return res;
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
 

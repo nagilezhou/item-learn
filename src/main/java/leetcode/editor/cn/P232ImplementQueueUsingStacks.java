@@ -60,7 +60,8 @@ package leetcode.editor.cn;
 import java.util.Deque;
 import java.util.LinkedList;
 
-//Java：Implement Queue using Stacks
+//Java：Implement Queue using Stacks 双栈模拟队列
+// 2021-08-15 review 1
 public class P232ImplementQueueUsingStacks{
     public static void main(String[] args) {
         //Solution solution = new P232ImplementQueueUsingStacks().new Solution();

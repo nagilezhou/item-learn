@@ -50,6 +50,7 @@
 package leetcode.editor.cn;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
@@ -59,10 +60,16 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
 
-//Java：Reconstruct Itinerary
+//Java：Reconstruct Itinerary 图 欧拉回路 回溯
+// 2021-08-17 review 1
 public class P332ReconstructItinerary {
     public static void main(String[] args) {
         Solution solution = new P332ReconstructItinerary().new Solution();
+        List<List<String>> test = new ArrayList<>();
+        test.add(Arrays.asList("JFK","KUL"));
+        test.add(Arrays.asList("JFK","NRT"));
+        test.add(Arrays.asList("NRT","JFK"));
+        solution.findItinerary(test);
         // TO TEST
     }
 
@@ -74,7 +81,7 @@ public class P332ReconstructItinerary {
         Map<String, PriorityQueue<String>> ticketMap = new HashMap<>();
         List<String> itinerary = new LinkedList<>();
 
-        public List<String> findItinerary2(List<List<String>> tickets) {
+        public List<String> findItinerary(List<List<String>> tickets) {
             for (List<String> ticket : tickets) {
                 String src = ticket.get(0);
                 String dst = ticket.get(1);
@@ -101,7 +108,7 @@ public class P332ReconstructItinerary {
 
         // <出发点 -> <达到点 -> 机票数量>>
         private Map<String, Map<String, Integer>> map;
-        public List<String> findItinerary(List<List<String>> tickets) {
+        public List<String> findItinerary2(List<List<String>> tickets) {
             map = new HashMap<>();
             res = new LinkedList<>();
             for(List<String> t : tickets){

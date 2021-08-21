@@ -23,7 +23,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Single Element in a Sorted Array
+//Java：Single Element in a Sorted Array 二分
+// 2021-08-21 review 1
 public class P540SingleElementInASortedArray {
     public static void main(String[] args) {
         Solution solution = new P540SingleElementInASortedArray().new Solution();

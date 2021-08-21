@@ -25,7 +25,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Valid Anagram
+//Java：Valid Anagram 数组 字典
+// 2021-08-14 review 1
 public class P242ValidAnagram {
     public static void main(String[] args) {
         Solution solution = new P242ValidAnagram().new Solution();

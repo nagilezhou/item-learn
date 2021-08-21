@@ -49,7 +49,8 @@ import java.util.Arrays;
 
 import javafx.util.Pair;
 
-//Java：Largest Number
+//Java：Largest Number 贪心
+// 2021-08-12 review 1
 public class P179LargestNumber {
     public static void main(String[] args) {
         Solution solution = new P179LargestNumber().new Solution();
@@ -76,6 +77,7 @@ public class P179LargestNumber {
             }
             int len = sb.length();
             int k = 0;
+            // 处理00的情况 保留一位
             while (k < len - 1 && sb.charAt(k) == '0') {
                 k++;
             }

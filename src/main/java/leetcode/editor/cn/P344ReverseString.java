@@ -24,7 +24,8 @@
 // 👍 415 👎 0
 
 package leetcode.editor.cn;
-//Java：Reverse String
+//Java：Reverse String 字符串
+// 2021-08-17 review 1
 public class P344ReverseString{
     public static void main(String[] args) {
         Solution solution = new P344ReverseString().new Solution();

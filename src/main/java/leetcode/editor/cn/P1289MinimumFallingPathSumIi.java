@@ -29,7 +29,8 @@
 // 👍 45 👎 0
 
 package leetcode.editor.cn;
-//Java：Minimum Falling Path Sum II
+//Java：Minimum Falling Path Sum II 矩阵 dp
+// 2021-08-21 review 1
 public class P1289MinimumFallingPathSumIi{
     public static void main(String[] args) {
         Solution solution = new P1289MinimumFallingPathSumIi().new Solution();

@@ -45,7 +45,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Lowest Common Ancestor of a Binary Tree
+//Java：Lowest Common Ancestor of a Binary Tree 二叉树 前序 后序
+// 2021-08-14 review 1
 public class P236LowestCommonAncestorOfABinaryTree {
     public static void main(String[] args) {
         Solution solution = new P236LowestCommonAncestorOfABinaryTree().new Solution();
@@ -67,11 +68,12 @@ public class P236LowestCommonAncestorOfABinaryTree {
             if (root == null) {
                 return null;
             }
-            TreeNode leftNode = lowestCommonAncestor(root.left, p, q);
-            TreeNode rightNode = lowestCommonAncestor(root.right, p, q);
             if(root.val == p.val || root.val == q.val){
                 return root;
             }
+            TreeNode leftNode = lowestCommonAncestor(root.left, p, q);
+            TreeNode rightNode = lowestCommonAncestor(root.right, p, q);
+
             if(leftNode != null && rightNode != null){
                 return root;
             }

@@ -43,7 +43,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Couples Holding Hands
+//Java：Couples Holding Hands 并查集
+// 2021-08-21 review 1
 public class P765CouplesHoldingHands {
     public static void main(String[] args) {
         Solution solution = new P765CouplesHoldingHands().new Solution();

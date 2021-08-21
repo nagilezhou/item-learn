@@ -57,7 +57,8 @@ import java.util.Map;
 
 import leetcode.editor.cn.P148SortList.ListNode;
 
-//Java：LRU Cache
+//Java：LRU Cache 哈希链表 map+链表+双端队列
+// 2021-08-09 review 1
 public class P146LruCache {
     public static void main(String[] args) {
         //Solution solution = new P146LruCache().new Solution();
@@ -65,9 +66,93 @@ public class P146LruCache {
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+    //class LRUCache {
+    //
+    //    class LinkedNode {
+    //        int key;
+    //        int value;
+    //        LinkedNode prev;
+    //        LinkedNode next;
+    //
+    //        public LinkedNode() {
+    //
+    //        }
+    //
+    //        public LinkedNode(int key, int value) {
+    //            this.key = key;
+    //            this.value = value;
+    //        }
+    //    }
+    //
+    //    LinkedNode head;
+    //    LinkedNode tail;
+    //    Map<Integer, LinkedNode> map;
+    //    int size;
+    //    int capacity;
+    //
+    //    public LRUCache(int capacity) {
+    //        this.size = 0;
+    //        this.capacity = capacity;
+    //        this.map = new HashMap<>(capacity);
+    //        this.head = new LinkedNode();
+    //        this.tail = new LinkedNode();
+    //        head.next = tail;
+    //        tail.prev = head;
+    //    }
+    //
+    //    public int get(int key) {
+    //        LinkedNode node = map.get(key);
+    //        if (node == null) {
+    //            return -1;
+    //        }
+    //        moveToHead(node);
+    //        return node.value;
+    //    }
+    //
+    //    public void put(int key, int value) {
+    //        LinkedNode node = map.get(key);
+    //        if (node != null) {
+    //            moveToHead(node);
+    //            node.value = value;
+    //        } else {
+    //            if (++size > capacity) {
+    //                node = removeTail();
+    //                size--;
+    //                map.remove(node.key);
+    //            }
+    //            node = new LinkedNode(key, value);
+    //            map.put(key, node);
+    //            addToHead(node);
+    //        }
+    //    }
+    //
+    //    public void moveToHead(LinkedNode node) {
+    //        removeNode(node);
+    //        addToHead(node);
+    //    }
+    //
+    //    public void removeNode(LinkedNode node) {
+    //        node.prev.next = node.next;
+    //        node.next.prev = node.prev;
+    //    }
+    //
+    //    public void addToHead(LinkedNode node) {
+    //        node.prev = head;
+    //        node.next = head.next;
+    //        node.next.prev = node;
+    //        head.next = node;
+    //    }
+    //
+    //    public LinkedNode removeTail() {
+    //        LinkedNode node = tail.prev;
+    //        removeNode(node);
+    //        return node;
+    //    }
+    //}
+
     class LRUCache {
 
-        class LinkedNode {
+        public class LinkedNode {
             int key;
             int value;
             LinkedNode prev;
@@ -83,16 +168,20 @@ public class P146LruCache {
             }
         }
 
-        LinkedNode head;
-        LinkedNode tail;
-        Map<Integer, LinkedNode> map;
-        int size;
-        int capacity;
+        private LinkedNode head;
+
+        private LinkedNode tail;
+
+        private Map<Integer, LinkedNode> map;
+
+        private int size;
+
+        private int capacity;
 
         public LRUCache(int capacity) {
-            this.size = 0;
             this.capacity = capacity;
-            this.map = new HashMap<>(capacity);
+            this.size = 0;
+            this.map = new HashMap<>();
             this.head = new LinkedNode();
             this.tail = new LinkedNode();
             head.next = tail;
@@ -111,41 +200,41 @@ public class P146LruCache {
         public void put(int key, int value) {
             LinkedNode node = map.get(key);
             if (node != null) {
-                moveToHead(node);
                 node.value = value;
+                moveToHead(node);
             } else {
                 if (++size > capacity) {
-                    node = removeTail();
+                    LinkedNode temp = removeTail();
+                    map.remove(temp.key);
                     size--;
-                    map.remove(node.key);
                 }
                 node = new LinkedNode(key, value);
-                map.put(key, node);
                 addToHead(node);
+                map.put(node.key, node);
             }
         }
 
-        public void moveToHead(LinkedNode node) {
+        private void moveToHead(LinkedNode node) {
             removeNode(node);
             addToHead(node);
         }
 
-        public void removeNode(LinkedNode node) {
-            node.prev.next = node.next;
-            node.next.prev = node.prev;
-        }
-
-        public void addToHead(LinkedNode node) {
+        private void addToHead(LinkedNode node) {
             node.prev = head;
             node.next = head.next;
             node.next.prev = node;
             head.next = node;
         }
 
-        public LinkedNode removeTail() {
-            LinkedNode node = tail.prev;
-            removeNode(node);
-            return node;
+        private void removeNode(LinkedNode node) {
+            node.prev.next = node.next;
+            node.next.prev = node.prev;
+        }
+
+        private LinkedNode removeTail() {
+            LinkedNode temp = tail.prev;
+            removeNode(temp);
+            return temp;
         }
     }
 

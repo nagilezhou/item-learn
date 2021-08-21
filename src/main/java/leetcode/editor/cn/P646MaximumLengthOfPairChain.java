@@ -41,7 +41,8 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：Maximum Length of Pair Chain
+//Java：Maximum Length of Pair Chain 数组 贪心 区间
+// 2021-08-21 review 1
 public class P646MaximumLengthOfPairChain {
     public static void main(String[] args) {
         Solution solution = new P646MaximumLengthOfPairChain().new Solution();

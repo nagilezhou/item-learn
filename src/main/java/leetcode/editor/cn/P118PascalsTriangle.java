@@ -26,7 +26,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//Java：Pascal's Triangle
+//Java：Pascal's Triangle dp
+// 2021-08-01 review 1
 public class P118PascalsTriangle{
     public static void main(String[] args) {
         Solution solution = new P118PascalsTriangle().new Solution();

@@ -66,7 +66,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Regular Expression Matching
+//Java：Regular Expression Matching dp
+// 2021-07-28 review 1
 public class P10RegularExpressionMatching {
     public static void main(String[] args) {
         Solution solution = new P10RegularExpressionMatching().new Solution();
@@ -96,10 +97,8 @@ public class P10RegularExpressionMatching {
                     // 对应了 p[j] 为普通字符和 '.' 的两种情况
                     if (i - 1 >= 0 && pp[j] != '*') {
                         dp[i][j] = dp[i - 1][j - 1] && (ss[i] == pp[j] || pp[j] == '.');
-                    }
-
-                    // 对应了 p[j] 为 '*' 的情况
-                    else if (pp[j] == '*') {
+                    } else if (pp[j] == '*') {
+                        // 对应了 p[j] 为 '*' 的情况
                         dp[i][j] = (j - 2 >= 0 && dp[i][j - 2]) || (i - 1 >= 0 && dp[i - 1][j] && (ss[i] == pp[j - 1] || pp[j - 1] == '.'));
                     }
                 }

@@ -40,7 +40,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Add Strings
+//Java：Add Strings 字符串
+// 2021-08-21 review 1
 public class P415AddStrings {
     public static void main(String[] args) {
         Solution solution = new P415AddStrings().new Solution();

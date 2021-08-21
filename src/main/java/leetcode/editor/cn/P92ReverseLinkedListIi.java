@@ -33,7 +33,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Reverse Linked List II
+//Java：Reverse Linked List II 链表
+// 2021-08-01 review 1
 public class P92ReverseLinkedListIi{
     public static void main(String[] args) {
         Solution solution = new P92ReverseLinkedListIi().new Solution();

@@ -32,44 +32,67 @@
 
 package leetcode.editor.cn;
 
-import java.util.Arrays;
-
 //Java：Longest Common Prefix
+// 2021-07-29 review 1
 public class P14LongestCommonPrefix{
     public static void main(String[] args) {
         Solution solution = new P14LongestCommonPrefix().new Solution();
         // TO TEST
     }
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public String longestCommonPrefix(String[] strs) {
-        StringBuilder result = new StringBuilder("");
-        if(strs == null || strs.length == 0){
-            return result.toString();
-        }
-        int mixLength = Arrays.stream(strs).map(String::length).min(Integer::compareTo).get();
-        boolean notEqual = false;
-        for (int i = 0; i < mixLength; i++){
-            Character c = null;
-            for(String str : strs){
-                if(c == null){
-                    c = str.charAt(i);
-                }else {
-                    if(c != str.charAt(i)){
-                        notEqual = true;
-                        break;
+    class Solution {
+        public String longestCommonPrefix2(String[] strs) {
+            if (strs == null || strs.length == 0) {
+                return "";
+            }
+            int length = strs[0].length();
+            int count = strs.length;
+            for (int i = 0; i < length; i++) {
+                char c = strs[0].charAt(i);
+                for (int j = 1; j < count; j++) {
+                    if (i == strs[j].length() || strs[j].charAt(i) != c) {
+                        return strs[0].substring(0, i);
                     }
                 }
             }
-            if(notEqual){
-                break;
-            }else {
-                result.append(c);
-            }
+            return strs[0];
         }
-        return result.toString();
+
+
+        public String longestCommonPrefix(String[] strs) {
+            if (strs == null || strs.length == 0) {
+                return "";
+            }
+            int minLength = Integer.MAX_VALUE;
+            for (String str : strs) {
+                minLength = Math.min(minLength, str.length());
+            }
+            int low = 0, high = minLength;
+            while (low < high) {
+                int mid = (high - low + 1) / 2 + low;
+                if (isCommonPrefix(strs, mid)) {
+                    low = mid;
+                } else {
+                    high = mid - 1;
+                }
+            }
+            return strs[0].substring(0, low);
+        }
+
+        public boolean isCommonPrefix(String[] strs, int length) {
+            String str0 = strs[0].substring(0, length);
+            int count = strs.length;
+            for (int i = 1; i < count; i++) {
+                String str = strs[i];
+                for (int j = 0; j < length; j++) {
+                    if (str0.charAt(j) != str.charAt(j)) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }

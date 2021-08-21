@@ -33,7 +33,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-//Java：Binary Tree Paths
+//Java：Binary Tree Paths 二叉树
+// 2021-08-17 review 1
 public class P257BinaryTreePaths {
     public static void main(String[] args) {
         Solution solution = new P257BinaryTreePaths().new Solution();

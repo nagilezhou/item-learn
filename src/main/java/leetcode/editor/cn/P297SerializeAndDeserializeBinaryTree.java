@@ -53,12 +53,11 @@
 
 package leetcode.editor.cn;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
-//Java：Serialize and Deserialize Binary Tree
+//Java：Serialize and Deserialize Binary Tree 二叉树
+// 2021-08-17 review 1
 public class P297SerializeAndDeserializeBinaryTree {
     public static void main(String[] args) {
         //Solution solution = new P297SerializeAndDeserializeBinaryTree().new Solution();

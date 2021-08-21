@@ -52,7 +52,8 @@ import java.util.List;
 
 import com.sun.org.apache.regexp.internal.RE;
 
-//Java：Flatten Binary Tree to Linked List
+//Java：Flatten Binary Tree to Linked List 二叉树
+// 2021-08-01 review 1
 public class P114FlattenBinaryTreeToLinkedList {
     public static void main(String[] args) {
         Solution solution = new P114FlattenBinaryTreeToLinkedList().new Solution();
@@ -95,9 +96,9 @@ public class P114FlattenBinaryTreeToLinkedList {
 
         public void flatten2(TreeNode root) {
             List<TreeNode> list = preorder2(root);
-            int size = list.size();
-            for (int i = 1; i < size; i++) {
-                TreeNode prev = list.get(i - 1), curr = list.get(i);
+            for (int i = 1; i < list.size(); i++) {
+                TreeNode prev = list.get(i - 1);
+                TreeNode curr = list.get(i);
                 prev.left = null;
                 prev.right = curr;
             }

@@ -35,7 +35,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Binary Search
+//Java：Binary Search 二分
+// 2021-08-21 review 1
 public class P704BinarySearch {
     public static void main(String[] args) {
         Solution solution = new P704BinarySearch().new Solution();

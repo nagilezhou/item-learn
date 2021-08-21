@@ -38,7 +38,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-//Java：Construct Binary Tree from Inorder and Postorder Traversal
+//Java：Construct Binary Tree from Inorder and Postorder Traversal 二叉树
+// 2021-08-07 review 1
 public class P106ConstructBinaryTreeFromInorderAndPostorderTraversal{
     public static void main(String[] args) {
         Solution solution = new P106ConstructBinaryTreeFromInorderAndPostorderTraversal().new Solution();

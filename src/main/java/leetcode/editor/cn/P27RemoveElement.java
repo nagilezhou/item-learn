@@ -64,7 +64,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Remove Element
+//Java：Remove Element 双指针 一个指针指向保留数组最后一位,一个指针指向原数组最后一位
+// 2021-07-31 review 1
 public class P27RemoveElement {
     public static void main(String[] args) {
         Solution solution = new P27RemoveElement().new Solution();

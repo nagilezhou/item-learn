@@ -40,11 +40,12 @@ package leetcode.editor.cn;
 import java.util.ArrayList;
 import java.util.List;
 
-//Java：Majority Element II
+//Java：Majority Element II 数组 摩尔投票
+// 2021-08-14 review 1
 public class P229MajorityElementIi {
     public static void main(String[] args) {
         Solution solution = new P229MajorityElementIi().new Solution();
-        System.out.println(solution.majorityElement(new int[]{1,2}).toString());
+        System.out.println(solution.majorityElement(new int[]{3,3}).toString());
         // TO TEST
     }
 

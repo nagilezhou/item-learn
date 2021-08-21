@@ -50,7 +50,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Get Equal Substrings Within Budget
+//Java：Get Equal Substrings Within Budget 字符串 滑动窗口
+// 2021-08-21 review 1
 public class P1208GetEqualSubstringsWithinBudget{
     public static void main(String[] args) {
         Solution solution = new P1208GetEqualSubstringsWithinBudget().new Solution();

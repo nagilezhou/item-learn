@@ -38,7 +38,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Maximal Square
+//Java：Maximal Square dp
+// 2021-08-14 review 1
 public class P221MaximalSquare {
     public static void main(String[] args) {
         Solution solution = new P221MaximalSquare().new Solution();

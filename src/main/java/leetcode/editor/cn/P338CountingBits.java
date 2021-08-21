@@ -51,7 +51,8 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：Counting Bits
+//Java：Counting Bits 位运算
+// 2021-08-17 review 1
 public class P338CountingBits {
     public static void main(String[] args) {
         Solution solution = new P338CountingBits().new Solution();

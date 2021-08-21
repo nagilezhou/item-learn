@@ -36,7 +36,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Remove Linked List Elements
+//Java：Remove Linked List Elements 链表
+// 2021-08-12 review 1
 public class P203RemoveLinkedListElements {
     public static void main(String[] args) {
         Solution solution = new P203RemoveLinkedListElements().new Solution();

@@ -41,7 +41,8 @@
 // 👍 346 👎 0
 
 package leetcode.editor.cn;
-//Java：Frog Jump
+//Java：Frog Jump dp
+// 2021-08-21 review 1
 public class P403FrogJump{
     public static void main(String[] args) {
         Solution solution = new P403FrogJump().new Solution();

@@ -41,7 +41,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-//Java：Binary Tree Level Order Traversal
+//Java：Binary Tree Level Order Traversal 二叉树+队列
+// 2021-08-07 review 1
 public class P102BinaryTreeLevelOrderTraversal{
     public static void main(String[] args) {
         Solution solution = new P102BinaryTreeLevelOrderTraversal().new Solution();

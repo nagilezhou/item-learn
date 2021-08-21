@@ -50,7 +50,8 @@
 // 👍 287 👎 0
 
 package leetcode.editor.cn;
-//Java：Backspace String Compare
+//Java：Backspace String Compare 字符串
+// 2021-08-21 review 1
 public class P844BackspaceStringCompare{
     public static void main(String[] args) {
         Solution solution = new P844BackspaceStringCompare().new Solution();

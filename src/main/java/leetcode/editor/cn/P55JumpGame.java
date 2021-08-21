@@ -35,7 +35,8 @@
 // 👍 1170 👎 0
 
 package leetcode.editor.cn;
-//Java：Jump Game
+//Java：Jump Game 贪心
+// 2021-08-01 review 1
 public class P55JumpGame{
     public static void main(String[] args) {
         Solution solution = new P55JumpGame().new Solution();

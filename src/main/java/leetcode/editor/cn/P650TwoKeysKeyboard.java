@@ -40,7 +40,8 @@
 
 package leetcode.editor.cn;
 
-//Java：2 Keys Keyboard
+//Java：2 Keys Keyboard dp
+// 2021-08-21 review 1
 public class P650TwoKeysKeyboard {
     public static void main(String[] args) {
         Solution solution = new P650TwoKeysKeyboard().new Solution();

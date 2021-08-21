@@ -57,7 +57,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Best Time to Buy and Sell Stock III
+//Java：Best Time to Buy and Sell Stock III dp
+// 2021-08-01 review 1
 public class P123BestTimeToBuyAndSellStockIii {
     public static void main(String[] args) {
         Solution solution = new P123BestTimeToBuyAndSellStockIii().new Solution();
@@ -76,7 +77,7 @@ public class P123BestTimeToBuyAndSellStockIii {
             for (int i = 1; i < prices.length; i++) {
                 //如果今天要持有股票，应该比较继续持有昨天的股票好，还是今天才开始买股票好
                 //(此时只交易了一次，所以是今天才买入的)
-                dp[i][1][1] = Math.max(dp[i - 1][1][1], -prices[i]);
+                dp[i][1][1] = Math.max(dp[i - 1][1][1], dp[0][1][0] - prices[i]);
                 //如果今天持有现金，应该比较昨天持有现金好，还是昨天持有股票加上今天的股价好
                 dp[i][1][0] = Math.max(dp[i - 1][1][0], dp[i - 1][1][1] + prices[i]);
                 //如果今天要持有股票，应该比较继续持有昨天股票好，还是今天才开始买股票好

@@ -47,7 +47,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Target Sum
+//Java：Target Sum backtrack 01背包
+// 2021-08-21 review 1
 public class P494TargetSum {
     public static void main(String[] args) {
         Solution solution = new P494TargetSum().new Solution();

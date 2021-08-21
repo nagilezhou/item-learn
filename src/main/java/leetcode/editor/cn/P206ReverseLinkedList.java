@@ -40,7 +40,8 @@
 package leetcode.editor.cn;
 
 
-//Java：Reverse Linked List
+//Java：Reverse Linked List 链表 反转 头插法
+// 2021-08-13 review 1
 public class P206ReverseLinkedList{
     public static void main(String[] args) {
         Solution solution = new P206ReverseLinkedList().new Solution();

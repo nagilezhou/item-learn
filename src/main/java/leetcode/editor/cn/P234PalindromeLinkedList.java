@@ -30,7 +30,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Palindrome Linked List
+//Java：Palindrome Linked List 链表 找中点 翻转
+// 2021-08-14 review 1
 public class P234PalindromeLinkedList{
     public static void main(String[] args) {
         Solution solution = new P234PalindromeLinkedList().new Solution();

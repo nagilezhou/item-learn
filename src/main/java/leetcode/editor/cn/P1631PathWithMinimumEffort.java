@@ -65,7 +65,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
-//Java：Path With Minimum Effort
+//Java：Path With Minimum Effort 图
+// 2021-08-21 review 1
 public class P1631PathWithMinimumEffort {
     public static void main(String[] args) {
         Solution solution = new P1631PathWithMinimumEffort().new Solution();

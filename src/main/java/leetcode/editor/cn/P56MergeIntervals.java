@@ -35,7 +35,8 @@ package leetcode.editor.cn;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-//Java：Merge Intervals
+//Java：Merge Intervals 区间数组 排序
+// 2021-08-01 review 1
 public class P56MergeIntervals{
     public static void main(String[] args) {
         Solution solution = new P56MergeIntervals().new Solution();

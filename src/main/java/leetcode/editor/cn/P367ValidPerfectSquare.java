@@ -21,7 +21,8 @@
 // 👍 218 👎 0
 
 package leetcode.editor.cn;
-//Java：Valid Perfect Square
+//Java：Valid Perfect Square 二分
+// 2021-08-17 review 1
 public class P367ValidPerfectSquare{
     public static void main(String[] args) {
         Solution solution = new P367ValidPerfectSquare().new Solution();

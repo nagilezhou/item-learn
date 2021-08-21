@@ -57,7 +57,8 @@ import java.util.List;
 import java.util.Stack;
 
 
-//Java：Binary Tree Preorder Traversal
+//Java：Binary Tree Preorder Traversal 二叉树 前序遍历
+// 2021-08-09 review 1
 public class P144BinaryTreePreorderTraversal{
     public static void main(String[] args) {
         Solution solution = new P144BinaryTreePreorderTraversal().new Solution();

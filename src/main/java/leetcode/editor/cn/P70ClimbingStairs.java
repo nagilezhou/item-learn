@@ -36,7 +36,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Climbing Stairs
+//Java：Climbing Stairs dp
+// 2021-08-01 review 1
 public class P70ClimbingStairs {
     public static void main(String[] args) {
         Solution solution = new P70ClimbingStairs().new Solution();

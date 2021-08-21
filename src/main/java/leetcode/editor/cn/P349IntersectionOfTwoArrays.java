@@ -33,7 +33,8 @@ package leetcode.editor.cn;
 import java.util.HashSet;
 import java.util.Set;
 
-//Java：Intersection of Two Arrays
+//Java：Intersection of Two Arrays 哈希表
+// 2021-08-17 review 1
 public class P349IntersectionOfTwoArrays{
     public static void main(String[] args) {
         Solution solution = new P349IntersectionOfTwoArrays().new Solution();

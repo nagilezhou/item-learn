@@ -25,7 +25,8 @@ package leetcode.editor.cn;
 import java.util.HashMap;
 import java.util.Map;
 
-//Java：Subarray Sum Equals K
+//Java：Subarray Sum Equals K 前缀和
+// 2021-08-21 review 1
 public class P560SubarraySumEqualsK {
     public static void main(String[] args) {
         Solution solution = new P560SubarraySumEqualsK().new Solution();

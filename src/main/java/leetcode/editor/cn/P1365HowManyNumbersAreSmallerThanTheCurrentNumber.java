@@ -46,7 +46,8 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：How Many Numbers Are Smaller Than the Current Number
+//Java：How Many Numbers Are Smaller Than the Current Number 数组 计数
+// 2021-08-21 review 1
 public class P1365HowManyNumbersAreSmallerThanTheCurrentNumber {
     public static void main(String[] args) {
         Solution solution = new P1365HowManyNumbersAreSmallerThanTheCurrentNumber().new Solution();

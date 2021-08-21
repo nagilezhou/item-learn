@@ -42,7 +42,8 @@ package leetcode.editor.cn;
 import java.util.ArrayList;
 import java.util.List;
 
-//Java：Find Common Characters
+//Java：Find Common Characters 字符串 哈希表 字典
+// 2021-08-21 review 1
 public class P1002FindCommonCharacters {
     public static void main(String[] args) {
         Solution solution = new P1002FindCommonCharacters().new Solution();

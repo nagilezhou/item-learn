@@ -69,7 +69,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Validate IP Address
+//Java：Validate IP Address 字符串
+// 2021-08-21 review 1
 public class P468ValidateIpAddress {
     public static void main(String[] args) {
         Solution solution = new P468ValidateIpAddress().new Solution();

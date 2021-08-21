@@ -70,7 +70,8 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
-//Java：Minimum Height Trees
+//Java：Minimum Height Trees 图 拓扑排序
+// 2021-08-17 review 1
 public class P310MinimumHeightTrees {
     public static void main(String[] args) {
         Solution solution = new P310MinimumHeightTrees().new Solution();
@@ -122,6 +123,7 @@ public class P310MinimumHeightTrees {
                     都会把该层（也就是叶子节点层）这一层从队列中移除掉，
                     不就相当于把原来的图给剪掉一圈叶子节点，形成一个缩小的新的图吗*/
                     List<Integer> neighbors = map.get(cur);
+                    degree[cur]--;
                     /*这里就是经典的bfs了，把当前节点的相邻接点都拿出来，
                      * 把它们的出度都减1，因为当前节点已经不存在了，所以，
                      * 它的相邻节点们就有可能变成叶子节点*/

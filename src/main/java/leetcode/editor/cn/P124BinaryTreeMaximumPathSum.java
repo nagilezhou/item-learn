@@ -38,7 +38,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Binary Tree Maximum Path Sum
+//Java：Binary Tree Maximum Path Sum dp
+// 2021-08-07 review 1
 public class P124BinaryTreeMaximumPathSum {
     public static void main(String[] args) {
         Solution solution = new P124BinaryTreeMaximumPathSum().new Solution();

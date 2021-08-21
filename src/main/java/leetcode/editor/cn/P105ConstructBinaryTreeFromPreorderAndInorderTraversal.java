@@ -34,9 +34,11 @@
 
 package leetcode.editor.cn;
 
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
-//Java：Construct Binary Tree from Preorder and Inorder Traversal
+//Java：Construct Binary Tree from Preorder and Inorder Traversal 二叉树
 public class P105ConstructBinaryTreeFromPreorderAndInorderTraversal {
     public static void main(String[] args) {
         Solution solution = new P105ConstructBinaryTreeFromPreorderAndInorderTraversal().new Solution();
@@ -76,8 +78,7 @@ public class P105ConstructBinaryTreeFromPreorderAndInorderTraversal {
 
         }
 
-        public TreeNode buildTreeNode(int[] preorder, int preorder_left, int preorder_right,
-            int inorder_left, int inorder_right) {
+        public TreeNode buildTreeNode(int[] preorder, int preorder_left, int preorder_right, int inorder_left, int inorder_right) {
             if(preorder_left > preorder_right){
                 return null;
             }
@@ -91,6 +92,33 @@ public class P105ConstructBinaryTreeFromPreorderAndInorderTraversal {
                 inorder_root + 1, inorder_right);
             return root;
         }
+
+        public TreeNode buildTree2(int[] preorder, int[] inorder) {
+            if (preorder == null || preorder.length == 0) {
+                return null;
+            }
+            TreeNode root = new TreeNode(preorder[0]);
+            Deque<TreeNode> stack = new LinkedList<TreeNode>();
+            stack.push(root);
+            int inorderIndex = 0;
+            for (int i = 1; i < preorder.length; i++) {
+                int preorderVal = preorder[i];
+                TreeNode node = stack.peek();
+                if (node.val != inorder[inorderIndex]) {
+                    node.left = new TreeNode(preorderVal);
+                    stack.push(node.left);
+                } else {
+                    while (!stack.isEmpty() && stack.peek().val == inorder[inorderIndex]) {
+                        node = stack.pop();
+                        inorderIndex++;
+                    }
+                    node.right = new TreeNode(preorderVal);
+                    stack.push(node.right);
+                }
+            }
+            return root;
+        }
+
 
         public class TreeNode {
             int val;

@@ -32,7 +32,8 @@
 // 👍 576 👎 0
 
 package leetcode.editor.cn;
-//Java：Palindromic Substrings
+//Java：Palindromic Substrings 字符串 dp
+// 2021-08-21 review 1
 public class P647PalindromicSubstrings{
     public static void main(String[] args) {
         Solution solution = new P647PalindromicSubstrings().new Solution();

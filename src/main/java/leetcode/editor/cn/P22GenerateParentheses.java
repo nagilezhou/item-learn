@@ -25,6 +25,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 //Java：Generate Parentheses
+// 2021-07-30 review 1
 public class P22GenerateParentheses {
     public static void main(String[] args) {
         Solution solution = new P22GenerateParentheses().new Solution();

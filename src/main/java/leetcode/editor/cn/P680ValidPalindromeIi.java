@@ -36,7 +36,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Valid Palindrome II
+//Java：Valid Palindrome II 字符串 双指针
+// 2021-08-21 review 1
 public class P680ValidPalindromeIi {
     public static void main(String[] args) {
         Solution solution = new P680ValidPalindromeIi().new Solution();

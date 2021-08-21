@@ -50,7 +50,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Coin Change 2
+//Java：Coin Change 2 完全背包
+// 2021-08-21 review 1
 public class P518CoinChange2 {
     public static void main(String[] args) {
         Solution solution = new P518CoinChange2().new Solution();

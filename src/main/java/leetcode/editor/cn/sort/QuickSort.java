@@ -8,7 +8,7 @@ import java.util.Arrays;
  */
 public class QuickSort {
     public static void main(String[] args) {
-        int[] arr = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+        int[] arr = {1};
         quickSort(arr, 0, arr.length - 1);
         System.out.println("排序结果：" + Arrays.toString(arr));
     }
@@ -27,11 +27,11 @@ public class QuickSort {
             //左指针
             int i = left;
             //右指针
-            int j = right;
+            int j = pivot;
             while (true) {
-                while (arr[++i] < arr[pivot]) {
+                while (i < j && arr[++i] < arr[pivot]) {
                 }
-                while (j > left && arr[--j] > arr[pivot]) {
+                while (j > i  && arr[--j] > arr[pivot]) {
                 }
                 if (i < j) {
                     swap(arr, i, j);
@@ -40,7 +40,7 @@ public class QuickSort {
                 }
             }
             if (i < right) {
-                swap(arr, i, right - 1);
+                swap(arr, i, pivot);
             }
             quickSort(arr, left, i - 1);
             quickSort(arr, i + 1, right);

@@ -54,7 +54,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Delete Node in a BST
+//Java：Delete Node in a BST 二叉搜索树 删除 前驱 后驱
+// 2021-08-21 review 1
 public class P450DeleteNodeInABst {
     public static void main(String[] args) {
         Solution solution = new P450DeleteNodeInABst().new Solution();

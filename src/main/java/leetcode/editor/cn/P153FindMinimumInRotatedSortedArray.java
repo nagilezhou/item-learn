@@ -56,29 +56,37 @@
 
 package leetcode.editor.cn;
 
-//Java：Find Minimum in Rotated Sorted Array
+//Java：Find Minimum in Rotated Sorted Array 二分
+// 2021-08-09 review 1
 public class P153FindMinimumInRotatedSortedArray {
     public static void main(String[] args) {
         Solution solution = new P153FindMinimumInRotatedSortedArray().new Solution();
-        System.out.println(solution.findMin(new int[]{3,4,5,1,2}));
+        System.out.println(solution.findMin(new int[]{11,13,15,17}));
         // TO TEST
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int findMin(int[] nums) {
+
+        // 根据旋转点 将数组一分为二
+        public int findMin(int[] nums){
+            if(nums == null || nums.length == 0){
+                return -1;
+            }
             int low = 0;
             int high = nums.length - 1;
-            while (high - low > 1) {
-                int mid = low + (high - low) / 2;
-                if(nums[mid] < nums[high]){
-                    high = mid;
+            while (low < high){
+                int mid = low + high + 1 >> 1;
+                if(nums[mid] >= nums[0]){
+                    low = mid;
                 }else {
-                    low = mid + 1;
+                    high = mid - 1;
                 }
             }
-            return Math.min(nums[low],nums[high]);
+            return low + 1 < nums.length ? nums[low + 1] : nums[0];
         }
+
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 

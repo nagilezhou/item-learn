@@ -28,7 +28,8 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-//Java：Move Zeroes
+//Java：Move Zeroes 数组 双指针
+// 2021-08-17 review 1
 public class P283MoveZeroes {
     public static void main(String[] args) {
         Solution solution = new P283MoveZeroes().new Solution();

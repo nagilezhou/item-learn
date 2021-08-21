@@ -36,7 +36,8 @@ package leetcode.editor.cn;
 import java.util.Arrays;
 import java.util.List;
 
-//Java：Number of Paths with Max Score
+//Java：Number of Paths with Max Score dp 路径问题
+// 2021-08-21 review 1
 public class P1301NumberOfPathsWithMaxScore {
     public static void main(String[] args) {
         Solution solution = new P1301NumberOfPathsWithMaxScore().new Solution();

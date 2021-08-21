@@ -30,33 +30,31 @@
 
 package leetcode.editor.cn;
 
-//Java：Sqrt(x)
+//Java：Sqrt(x) 二分+搜索最右边的值
+// 2021-08-01 review 1
 public class P69Sqrtx {
     public static void main(String[] args) {
         Solution solution = new P69Sqrtx().new Solution();
-        System.out.println(solution.mySqrt(8));
+        System.out.println(solution.mySqrt(2147395599));
         // TO TEST
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int mySqrt(int x) {
-            int left = 1;
-            int right = x;
+            int low = 0;
+            int high = x;
             int sqrt;
-            int mid;
-            while (left <= right){
-                mid = left + (right - left) / 2;
+            while (low < high) {
+                int mid = low + ((high - low) >> 1) + 1;
                 sqrt = x / mid;
-                if(mid == sqrt){
-                    return mid;
-                }else if(mid > sqrt){
-                    right = mid - 1;
-                }else {
-                    left = mid + 1;
+                if (mid <= sqrt) {
+                    low = mid;
+                } else {
+                    high = mid - 1;
                 }
             }
-            return right;
+            return low;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

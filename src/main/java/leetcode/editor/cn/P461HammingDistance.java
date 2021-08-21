@@ -35,7 +35,8 @@
 
 package leetcode.editor.cn;
 
-//Java：Hamming Distance
+//Java：Hamming Distance 位运算
+// 2021-08-21 review 1
 public class P461HammingDistance {
     public static void main(String[] args) {
         Solution solution = new P461HammingDistance().new Solution();

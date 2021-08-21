@@ -46,7 +46,8 @@ package leetcode.editor.cn;
 import java.util.ArrayList;
 import java.util.List;
 
-//Java：Triangle
+//Java：Triangle dp
+// 2021-08-01 review 1
 public class P120Triangle {
     public static void main(String[] args) {
         Solution solution = new P120Triangle().new Solution();

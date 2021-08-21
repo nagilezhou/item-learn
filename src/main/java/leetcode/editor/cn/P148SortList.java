@@ -80,22 +80,22 @@ public class P148SortList {
             slow.next = null;
             ListNode left = sortList(head);
             ListNode right = sortList(tmp);
-            ListNode h = new ListNode();
-            ListNode res = h;
+            ListNode dummyHead = new ListNode();
+            ListNode node = dummyHead;
             // 合并两段链表
             while (left != null && right != null) {
                 if (left.val < right.val) {
-                    h.next = left;
+                    node.next = left;
                     left = left.next;
                 } else {
-                    h.next = right;
+                    node.next = right;
                     right = right.next;
                 }
-                h = h.next;
+                node = node.next;
             }
             // 将剩余的直接添加到尾部
-            h.next = left != null ? left : right;
-            return res.next;
+            node.next = left != null ? left : right;
+            return dummyHead.next;
         }
 
         /**
