@@ -32,12 +32,13 @@ import java.util.Random;
 public class P215KthLargestElementInAnArray {
     public static void main(String[] args) {
         Solution solution = new P215KthLargestElementInAnArray().new Solution();
-        System.out.println(solution.findKthLargest(new int[] {1}, 1));
+        System.out.println(solution.findKthLargest(new int[] {3,2,1,5,6,4}, 2));
         // TO TEST
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
 
         public int findKthLargest(int[] nums, int k) {
             if (nums == null || nums.length == 0 || k <= 0) {
@@ -59,45 +60,67 @@ public class P215KthLargestElementInAnArray {
             }
         }
 
+        private Random random = new Random();
+
         private int partition(int[] nums, int left, int right) {
             if(left < right){
-                dealPivot(nums, left, right);
+                int randomIndex = left + 1 + random.nextInt(right - left);
+                swap(nums, left, randomIndex);
             }
-            int pivot = right - 1;
-            int i = left;
-            int j = pivot;
-            while (true){
-                while (i < j && nums[++i] < nums[pivot]){
-
-                }
-                while (j > i && nums[--j] > nums[pivot]){
-
-                }
-                if(i < j){
-                    swap(nums, i ,j);
-                }else {
-                    break;
+            int pivot = left;
+            int j = left;
+            for (int i = left + 1; i <= right; i++) {
+                if (nums[i] < nums[pivot]) {
+                    j++;
+                    // j 的初值为 left，先右移，再交换，小于 pivot 的元素都被交换到前面
+                    swap(nums, i, j);
                 }
             }
-            if(i < right){
-                swap(nums, i, pivot);
-            }
-            return i;
+            // 在之前遍历的过程中，满足 nums[left + 1..j] < pivot，并且 nums(j..i) >= pivot
+            swap(nums, pivot, j);
+            // 交换以后 nums[left..j - 1] < pivot, nums[j] = pivot, nums[j + 1..right] >= pivot
+            return j;
         }
 
-        private void dealPivot(int[] nums, int left, int right) {
-            int mid = left + right >> 1;
-            if (nums[left] > nums[mid]) {
-                swap(nums, left, mid);
-            }
-            if (nums[left] > nums[right]) {
-                swap(nums, left, right);
-            }
-            if (nums[mid] > nums[right]) {
-                swap(nums, mid, right);
-            }
-            swap(nums, mid, right - 1);
-        }
+        //private int partition(int[] nums, int left, int right) {
+        //    if(left < right){
+        //        dealPivot(nums, left, right);
+        //    }
+        //    int pivot = right - 1;
+        //    int i = left;
+        //    int j = pivot;
+        //    while (true){
+        //        while (i < j && nums[++i] < nums[pivot]){
+        //
+        //        }
+        //        while (j > i && nums[--j] > nums[pivot]){
+        //
+        //        }
+        //        if(i < j){
+        //            swap(nums, i ,j);
+        //        }else {
+        //            break;
+        //        }
+        //    }
+        //    if(left < right){
+        //        swap(nums, i, pivot);
+        //    }
+        //    return i;
+        //}
+
+        //private void dealPivot(int[] nums, int left, int right) {
+        //    int mid = left + right >> 1;
+        //    if (nums[left] > nums[mid]) {
+        //        swap(nums, left, mid);
+        //    }
+        //    if (nums[left] > nums[right]) {
+        //        swap(nums, left, right);
+        //    }
+        //    if (nums[mid] > nums[right]) {
+        //        swap(nums, mid, right);
+        //    }
+        //    swap(nums, mid, right - 1);
+        //}
 
         private void swap(int nums[], int left, int right) {
             int temp = nums[left];
