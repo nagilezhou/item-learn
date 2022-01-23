@@ -61,34 +61,33 @@ public class P33SearchInRotatedSortedArray {
             }
 
             // 第一次「二分」：从中间开始找，找到满足 >=nums[0] 的分割点（旋转点）
-            int low = 0, high = n;
-            while (low < high) {
-                int mid = low + high >> 1;
-                if (nums[0] > nums[mid]) {
-                    high = mid;
+            int left = 0, right = n - 1;
+            while (left < right) {
+                int mid = left + right + 1 >> 1;
+                if (nums[mid] >= nums[0]) {
+                    left = mid;
                 } else {
-                    low = mid + 1;
+                    right = mid - 1;
                 }
             }
 
             // 第二次「二分」：通过和 nums[0] 进行比较，得知 target 是在旋转点的左边还是右边
             if (target >= nums[0]) {
-                high = low - 1;
-                low = 0;
+                left = 0;
             } else {
-                //low = low ;
-                high = n - 1;
+                left = left + 1;
+                right = n - 1;
             }
-            while (low < high) {
-                int mid = low + high >> 1;
+            while (left < right) {
+                int mid = left + right >> 1;
                 if (nums[mid] >= target) {
-                    high = mid;
+                    right = mid;
                 } else {
-                    low = mid + 1;
+                    left = mid + 1;
                 }
             }
 
-            return nums[high] == target ? high : -1;
+            return nums[right] == target ? right : -1;
         }
 
     }

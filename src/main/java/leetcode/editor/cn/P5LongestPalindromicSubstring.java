@@ -62,14 +62,14 @@ class Solution {
         int end = 0;
         int maxLength = 1;
         boolean dp[][] = new boolean[length][length];
-        for(int i = 1; i < length; i++){
-            for(int j = 0; j < i; j++){
-                if(s.charAt(i) == s.charAt(j) && (i - j <= 2 || dp[j + 1][i - 1])){
-                    dp[j][i] = true;
-                    if(i - j + 1 > maxLength){
-                        begin = j;
-                        end = i;
-                        maxLength = i - j + 1;
+        for(int i = length - 1; i >= 0; i--){
+            for(int j = i; j < length; j++){
+                if(s.charAt(i) == s.charAt(j) && (j - i <= 2 || dp[i + 1][j - 1])){
+                    dp[i][j] = true;
+                    if(j - i + 1 > maxLength){
+                        begin = i;
+                        end = j;
+                        maxLength = j - i + 1;
                     }
                 }
             }

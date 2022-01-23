@@ -35,7 +35,7 @@ package leetcode.editor.cn;
 public class P69Sqrtx {
     public static void main(String[] args) {
         Solution solution = new P69Sqrtx().new Solution();
-        System.out.println(solution.mySqrt(2147395599));
+        System.out.println(solution.mySqrt(2147483647));
         // TO TEST
     }
 
@@ -44,11 +44,9 @@ public class P69Sqrtx {
         public int mySqrt(int x) {
             int low = 0;
             int high = x;
-            int sqrt;
             while (low < high) {
-                int mid = low + ((high - low) >> 1) + 1;
-                sqrt = x / mid;
-                if (mid <= sqrt) {
+                int mid = high + low + 1 >> 1 ;
+                if (mid <= x / mid) {
                     low = mid;
                 } else {
                     high = mid - 1;
