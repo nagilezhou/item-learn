@@ -53,7 +53,11 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Deque;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 //Java：Serialize and Deserialize Binary Tree 二叉树
@@ -126,6 +130,37 @@ public class P297SerializeAndDeserializeBinaryTree {
                 }
                 queue = temp;
             }
+            return root;
+        }
+
+    }
+
+
+
+    public class Codec2{
+        public String serialize(TreeNode root) {
+            if(root == null){
+                return "#";
+            }
+            String left = serialize(root.left);
+            String right = serialize(root.right);
+            return root.val + "," + left + "," + right;
+        }
+
+        // Decodes your encoded data to tree.
+        public TreeNode deserialize(String data) {
+            Deque<String> queue = new LinkedList<>(Arrays.asList(data.split(",")));
+            return buildTree(queue);
+        }
+
+        public TreeNode buildTree(Deque<String> nodeList) {
+            String node = nodeList.poll();
+            if(node.equals("#")){
+                return null;
+            }
+            TreeNode root = new TreeNode(Integer.parseInt(node));
+            root.left = buildTree(nodeList);
+            root.right = buildTree(nodeList);
             return root;
         }
     }

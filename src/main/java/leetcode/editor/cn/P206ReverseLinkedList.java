@@ -72,6 +72,16 @@ class Solution {
         return resHead;
     }
 
+    public ListNode reverseList2(ListNode head) {
+        if(head == null || head.next == null){
+            return head;
+        }
+        ListNode last = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return last;
+    }
+
     class ListNode {
         int val;
         ListNode next;

@@ -68,6 +68,29 @@ class Solution {
         }
         return dummyHead.next;
     }
+
+
+    public ListNode reverseBetween2(ListNode head, int left, int right) {
+        if(left > 1){
+            head.next = reverseBetween2(head.next, left - 1, right - 1);
+            return head;
+        }
+        return reverseFromHead(head, right);
+    }
+
+    ListNode successor = null;
+
+    public ListNode reverseFromHead(ListNode head, int n) {
+        if(n == 1){
+            successor = head.next;
+            return head;
+        }
+        ListNode last = reverseFromHead(head.next, n - 1);
+        head.next.next = head;
+        head.next = successor;
+        return last;
+    }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 public class ListNode {

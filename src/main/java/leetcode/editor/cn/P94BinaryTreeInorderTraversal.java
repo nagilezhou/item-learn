@@ -58,6 +58,8 @@
 package leetcode.editor.cn;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -88,7 +90,7 @@ public class P94BinaryTreeInorderTraversal {
     class Solution {
         public List<Integer> inorderTraversal(TreeNode root) {
             List<Integer> result = new ArrayList<>();
-            Stack<TreeNode> stack = new Stack<>();
+            Deque<TreeNode> stack = new LinkedList<>();
             while (root != null || !stack.isEmpty()){
                 while (root != null){
                     stack.push(root);

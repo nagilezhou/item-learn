@@ -53,6 +53,7 @@ package leetcode.editor.cn;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Queue;
 
 //Java：Is Graph Bipartite? 矩阵 dfs bfs
 // 2021-08-21 review 1
@@ -87,6 +88,43 @@ public class P785IsGraphBipartite {
                                 queue.offer(neighbor);
                                 color[neighbor] = cNei;
                             } else if (color[neighbor] != cNei) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
+
+        int B_NONE = 0;
+        int B_RED = 1;
+        int B_GREEN = -1;
+
+        public boolean isBipartite3(int[][] graph) {
+            if(graph == null || graph.length == 0){
+                return true;
+            }
+            int length = graph.length;
+            int[] color = new int[length];
+
+            for(int i = 0; i < length; i++){
+                if(color[i] != B_NONE){
+                    continue;
+                }
+                color[i] = B_RED;
+                Queue<Integer> queue = new LinkedList<>();
+                queue.offer(i);
+                while(!queue.isEmpty()){
+                    int q = queue.poll();
+                    int nextColor = color[q] == B_RED ? B_GREEN : B_RED;
+                    for(int num : graph[q]){
+                        if(color[num] == B_NONE){
+                            color[num] = nextColor;
+                            queue.offer(num);
+                        }else{
+                            if(nextColor != color[num]){
                                 return false;
                             }
                         }

@@ -88,10 +88,6 @@ public class P145BinaryTreePostorderTraversal{
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<Integer>();
-        if (root == null) {
-            return res;
-        }
-
         Deque<TreeNode> stack = new LinkedList<TreeNode>();
         // prev指针用来标记该节点的右子树已经访问过
         TreeNode prev = null;

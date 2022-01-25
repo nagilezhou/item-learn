@@ -78,7 +78,28 @@ public class P1631PathWithMinimumEffort {
     class Solution {
         int row;
         int col;
+        int N = 10009;
+        int[] p = new int[N];
 
+        // b作为a的根节点
+        void union(int a, int b) {
+            p[find(a)] = p[find(b)];
+        }
+
+        boolean query(int a, int b) {
+            return p[find(a)] == p[find(b)];
+        }
+
+        int find(int x) {
+            return p[x] != x ? find(p[x]) : p[x];
+        }
+
+        int getIndex(int x, int y) {
+            return x * col + y;
+        }
+
+
+        // Kruskal
         public int minimumEffortPath2(int[][] heights) {
             row = heights.length;
             col = heights[0].length;
@@ -124,25 +145,7 @@ public class P1631PathWithMinimumEffort {
             return 0;
         }
 
-        int N = 10009;
-        int[] p = new int[N];
-
-        // b作为a的根节点
-        void union(int a, int b) {
-            p[find(a)] = p[find(b)];
-        }
-
-        boolean query(int a, int b) {
-            return p[find(a)] == p[find(b)];
-        }
-
-        int find(int x) {
-            return p[x] != x ? find(p[x]) : p[x];
-        }
-
-        int getIndex(int x, int y) {
-            return x * col + y;
-        }
+        // Dijkstra 算法 求原点到目标点的最短距离 (队列优化)
 
         int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
