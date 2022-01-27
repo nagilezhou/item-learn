@@ -65,7 +65,7 @@ public class P1109CorporateFlightBookings {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int[] corpFlightBookings(int[][] bookings, int n) {
+        public int[] corpFlightBookings2(int[][] bookings, int n) {
             int[] diff = new int[n];
             for (int i = 0; i < bookings.length; i++) {
                 diff[bookings[i][0] - 1] += bookings[i][2];
@@ -79,6 +79,25 @@ public class P1109CorporateFlightBookings {
                 res[i] = res[i - 1] + diff[i];
             }
             return res;
+        }
+
+
+        public int[] corpFlightBookings(int[][] bookings, int n) {
+            int[] diff = new int[n];
+            for(int i = 0; i < bookings.length; i++){
+                int start = bookings[i][0];
+                int end = bookings[i][1];
+                int val = bookings[i][2];
+                diff[start - 1] += val;
+                if(end < n){
+                    diff[end] -= val;
+                }
+            }
+
+            for(int i = 1; i < n; i++){
+                diff[i] += diff[i - 1];
+            }
+            return diff;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

@@ -72,6 +72,7 @@ public class P46Permutations {
                 used[i] = false;
             }
         }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
