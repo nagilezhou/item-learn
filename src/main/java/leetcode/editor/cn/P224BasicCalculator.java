@@ -43,8 +43,11 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 //Java：Basic Calculator 栈
 // 2021-08-14 review 1
@@ -83,12 +86,13 @@ public class P224BasicCalculator {
                             break;
                         }
                     }
-                } else {
-                    if (isNum(c)) {
+                } else if (isNum(c)) {
                         int u = 0;
                         int j = i;
                         // 将从 i 位置开始后面的连续数字整体取出，加入 numsStack
-                        while (j < n && isNum(cs[j])) { u = u * 10 + (int)(cs[j++] - '0'); }
+                        while (j < n && isNum(cs[j])) {
+                            u = u * 10 + (int)(cs[j++] - '0');
+                        }
                         numsStack.push(u);
                         i = j - 1;
                     } else {
@@ -96,11 +100,13 @@ public class P224BasicCalculator {
                             numsStack.push(0);
                         }
                         // 有一个新操作要入栈时，先把栈内可以算的都算了
-                        while (!opsStack.isEmpty() && opsStack.peek() != '(') { calc(numsStack, opsStack); }
+                        while (!opsStack.isEmpty() && opsStack.peek() != '(') {
+                            calc(numsStack, opsStack);
+                        }
                         opsStack.push(c);
                     }
                 }
-            }
+
             while (!opsStack.isEmpty()) { calc(numsStack, opsStack); }
             return numsStack.peek();
         }
@@ -119,6 +125,89 @@ public class P224BasicCalculator {
     }
 
     //leetcode submit region end(Prohibit modification and deletion)
+
+
+    class Solution2 {
+        Map<Character, Integer> map = new HashMap<Character, Integer>(){{
+            put('-', 1);
+            put('+', 1);
+            put('*', 2);
+            put('/', 2);
+            put('%', 2);
+            put('^', 3);
+        }};
+        public int calculate(String s) {
+            s = s.replaceAll(" ", "");
+            char[] cs = s.toCharArray();
+            int n = s.length();
+            Deque<Integer> nums = new ArrayDeque<>();
+            nums.addLast(0);
+            Deque<Character> ops = new ArrayDeque<>();
+            for (int i = 0; i < n; i++) {
+                char c = cs[i];
+                if (c == '(') {
+                    ops.addLast(c);
+                } else if (c == ')') {
+                    while (!ops.isEmpty()) {
+                        if (ops.peekLast() != '(') {
+                            calc(nums, ops);
+                        } else {
+                            ops.pollLast();
+                            break;
+                        }
+                    }
+                } else {
+                    if (isNumber(c)) {
+                        int u = 0;
+                        int j = i;
+                        while (j < n && isNumber(cs[j])) u = u * 10 + (cs[j++] - '0');
+                        nums.addLast(u);
+                        i = j - 1;
+                    } else {
+                        if (i > 0 && (cs[i - 1] == '(' || cs[i - 1] == '+' || cs[i - 1] == '-')) {
+                            nums.addLast(0);
+                        }
+                        while (!ops.isEmpty() && ops.peekLast() != '(') {
+                            char prev = ops.peekLast();
+                            if (map.get(prev) >= map.get(c)) {
+                                calc(nums, ops);
+                            } else {
+                                break;
+                            }
+                        }
+                        ops.addLast(c);
+                    }
+                }
+            }
+            while (!ops.isEmpty() && ops.peekLast() != '(') calc(nums, ops);
+            return nums.peekLast();
+        }
+        void calc(Deque<Integer> nums, Deque<Character> ops) {
+            if (nums.isEmpty() || nums.size() < 2) return;
+            if (ops.isEmpty()) return;
+            int b = nums.pollLast(), a = nums.pollLast();
+            char op = ops.pollLast();
+            int ans = 0;
+            if (op == '+') {
+                ans = a + b;
+            } else if (op == '-') {
+                ans = a - b;
+            } else if (op == '*') {
+                ans = a * b;
+            } else if (op == '/') {
+                ans = a / b;
+            } else if (op == '^') {
+                ans = (int)Math.pow(a, b);
+            } else if (op == '%') {
+                ans = a % b;
+            }
+            nums.addLast(ans);
+        }
+        boolean isNumber(char c) {
+            return Character.isDigit(c);
+        }
+    }
+
 
 }
 

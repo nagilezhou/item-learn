@@ -79,7 +79,25 @@ class Solution {
         }
         return dp[m - 1][n - 1];
     }
-}
+
+    public int uniquePaths2(int m, int n) {
+        if(m <= 0 || n <= 0){
+            return -1;
+        }
+
+        int[] dp = new int[n];
+        dp[0] = 1;
+        for(int i = 1; i < m; i++){
+            for(int j = n - 1; j >= 1; j--){
+                dp[j] += dp[j - 1];
+            }
+        }
+
+        return dp[n - 1];}
+    }
+
+
+
 //leetcode submit region end(Prohibit modification and deletion)
 
 }

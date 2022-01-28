@@ -62,7 +62,7 @@ class Solution {
                     continue;
                 }
                 if(row == 0 && col == 0){
-                    dp[row][col] = obstacleGrid[row][col] == 1 ? 0 : 1;
+                    dp[row][col] = 1;
                     continue;
                 }
                 if(row == 0){
@@ -77,6 +77,37 @@ class Solution {
             }
         }
         return dp[rowLength - 1][colLength - 1];
+    }
+
+
+
+    public int uniquePathsWithObstacles2(int[][] obstacleGrid) {
+        int m = obstacleGrid.length;
+        int n = obstacleGrid[0].length;
+        int[] dp = new int[n];
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(obstacleGrid[i][j] == 1){
+                    dp[j] = 0;
+                    continue;
+                }
+                if(i == 0 && j == 0){
+                    dp[j] = 1;
+                    continue;
+                }
+                if(i == 0){
+                    dp[j] = dp[j - 1];
+                    continue;
+                }
+                if(j == 0){
+                    dp[j] = dp[j];
+                    continue;
+                }
+
+                dp[j] = dp[j] + dp[j - 1];
+            }
+        }
+        return dp[n - 1];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
