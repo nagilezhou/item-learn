@@ -32,7 +32,7 @@ import java.util.Random;
 public class P215KthLargestElementInAnArray {
     public static void main(String[] args) {
         Solution solution = new P215KthLargestElementInAnArray().new Solution();
-        System.out.println(solution.findKthLargest(new int[] {3,2,1,5,6,4}, 2));
+        System.out.println(solution.findKthLargest(new int[] {3,2,1,5,6,4}, 8));
         // TO TEST
     }
 

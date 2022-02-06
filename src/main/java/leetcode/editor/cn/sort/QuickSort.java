@@ -1,6 +1,7 @@
 package leetcode.editor.cn.sort;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * @author nagile_zhou
@@ -8,16 +9,36 @@ import java.util.Arrays;
  */
 public class QuickSort {
     public static void main(String[] args) {
-        int[] arr = {1};
-        quickSort(arr, 0, arr.length - 1);
+        int[] arr = {2,1};
+        quickSort2(arr, 0, arr.length - 1);
         System.out.println("排序结果：" + Arrays.toString(arr));
     }
 
-    /**
-     * @param arr
-     * @param left  左指针
-     * @param right 右指针
-     */
+
+
+    private static Random random = new Random();
+
+    public static void quickSort2(int[] arr, int left, int right) {
+        if (left < right) {
+            int randomIndex = left + 1 + random.nextInt(right - left);
+            swap(arr, left, randomIndex);
+            int pivot = left;
+            int j = left;
+            for (int i = left + 1; i <= right; i++) {
+                if (arr[i] < arr[pivot]) {
+                    j++;
+                    // j 的初值为 left，先右移，再交换，小于 pivot 的元素都被交换到前面
+                    swap(arr, i, j);
+                }
+            }
+            // 在之前遍历的过程中，满足 nums[left + 1..j] < pivot，并且 nums(j..i) >= pivot
+            swap(arr, pivot, j);
+            quickSort2(arr, left, j - 1);
+            quickSort2(arr, j + 1, right);
+        }
+    }
+
+
     public static void quickSort(int[] arr, int left, int right) {
         if (left < right) {
             //获取枢纽值，并将其放在当前待处理序列末尾
@@ -28,16 +49,14 @@ public class QuickSort {
             int i = left;
             //右指针
             int j = pivot;
-            while (true) {
-                while (i < j && arr[++i] < arr[pivot]) {
+            while (i < j) {
+                while (i < j && arr[i] < arr[pivot]) {
+                    i++;
                 }
-                while (j > i  && arr[--j] > arr[pivot]) {
+                while (j > i  && arr[j] > arr[pivot]) {
+                    j--;
                 }
-                if (i < j) {
-                    swap(arr, i, j);
-                } else {
-                    break;
-                }
+                swap(arr, i, j);
             }
             if (i < right) {
                 swap(arr, i, pivot);
@@ -45,16 +64,9 @@ public class QuickSort {
             quickSort(arr, left, i - 1);
             quickSort(arr, i + 1, right);
         }
-
     }
 
-    /**
-     * 处理枢纽值
-     *
-     * @param arr
-     * @param left
-     * @param right
-     */
+
     public static void dealPivot(int[] arr, int left, int right) {
         int mid = (left + right) / 2;
         if (arr[left] > arr[mid]) {
