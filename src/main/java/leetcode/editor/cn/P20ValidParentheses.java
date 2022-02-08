@@ -83,7 +83,7 @@ public class P20ValidParentheses {
                 put(']', '[');
                 put('}', '{');
             }};
-            Deque<Character> stack = new ArrayDeque(s.length());
+            Deque<Character> stack = new ArrayDeque<>(s.length());
             for (char c : s.toCharArray()) {
                 if (pairs.containsValue(c)) {
                     stack.push(c);

@@ -77,12 +77,12 @@ public class P23MergeKSortedLists {
             if (lists == null || lists.length == 0) {
                 return null;
             }
-            PriorityQueue<ListNode> heap = new PriorityQueue((Comparator<ListNode>)(o1, o2) -> o1.val - o2.val);
+            PriorityQueue<ListNode> heap = new PriorityQueue<>((o1, o2) -> o1.val - o2.val);
             for (ListNode node : lists) {
                 if (node == null) {
                     continue;
                 }
-                heap.add(node);
+                heap.offer(node);
             }
             ListNode head = new ListNode();
             ListNode tail = head;
@@ -91,7 +91,7 @@ public class P23MergeKSortedLists {
                 tail.next = next;
                 tail = tail.next;
                 if (tail.next != null) {
-                    heap.add(tail.next);
+                    heap.offer(tail.next);
                 }
 
             }
