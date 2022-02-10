@@ -119,13 +119,17 @@ public class P8StringToIntegerAtoi {
 
             // 3、如果出现符号字符，仅第 1 个有效，并记录正负
             int sign = 1;
+            int index = 0;
             if (charArray[0] == '-') {
                 sign = -1;
+                index++;
+            }else if(charArray[0] == '+'){
+                index++;
             }
-            int index = 1;
             // 4、将后续出现的数字字符进行转换
             // 不能使用 long 类型，这是题目说的
             int res = 0;
+            int last;
             while (index < len) {
                 char currChar = charArray[index];
                 // 4.1 先判断不合法的情况
@@ -134,18 +138,15 @@ public class P8StringToIntegerAtoi {
                 }
 
                 // 题目中说：环境只能存储 32 位大小的有符号整数，因此，需要提前判：断乘以 10 以后是否越界
-                if (res > Integer.MAX_VALUE / 10 || (res == Integer.MAX_VALUE / 10 && (currChar - '0') > Integer.MAX_VALUE % 10)) {
-                    return Integer.MAX_VALUE;
+                last = res;
+                // 才考虑转换，每一步都把符号位乘进去
+                res = res * 10 + (currChar - '0');
+                if(res / 10 != last){
+                    return sign == -1 ? Integer.MIN_VALUE : Integer.MAX_VALUE;
                 }
-                if (res < Integer.MIN_VALUE / 10 || (res == Integer.MIN_VALUE / 10 && (currChar - '0') > -(Integer.MIN_VALUE % 10))) {
-                    return Integer.MIN_VALUE;
-                }
-
-                // 4.2 合法的情况下，才考虑转换，每一步都把符号位乘进去
-                res = res * 10 + sign * (currChar - '0');
                 index++;
             }
-            return res;
+            return res * sign;
         }
 
     }

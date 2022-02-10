@@ -94,43 +94,43 @@ public class P695MaxAreaOfIsland {
         }
 
 
+        int[] di = new int[]{1, -1, 0, 0};
+        int[] dj = new int[]{0, 0, 1, -1};
         public int maxAreaOfIsland(int[][] grid) {
             int n = grid.length;
             int m = grid[0].length;
+
             int res = 0;
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < m; j++) {
-                    if (grid[i][j] == 1) {
-                       res = Math.max(res, dfs(grid, i, j));
+            for(int i = 0; i < n; i++){
+                for(int j = 0; j < m; j++){
+                    if(grid[i][j] == 1){
+                        res = Math.max(res, dfs(grid, i , j));
                     }
                 }
             }
             return res;
         }
 
-        private int dfs(int[][] grid, int r, int c) {
-            // 判断 base case
-            if (!inArea(grid, r, c)) {
+        private int dfs(int[][] grid, int row, int col){
+            if(check(grid, row, col)){
                 return 0;
             }
-            // 如果这个格子不是岛屿，直接返回
-            if (grid[r][c] != 1) {
+            if(grid[row][col] != 1){
                 return 0;
             }
-            grid[r][c] = 2; // 将格子标记为「已遍历过」
+            grid[row][col] = 2;
             int res = 1;
-            // 访问上、下、左、右四个相邻结点
-            res += dfs(grid, r - 1, c);
-            res += dfs(grid, r + 1, c);
-            res += dfs(grid, r, c - 1);
-            res += dfs(grid, r, c + 1);
+            for(int i = 0; i < 4; i++){
+                res += dfs(grid, row + di[i], col + dj[i]);
+            }
             return res;
         }
 
-        // 判断坐标 (r, c) 是否在网格中
-        private boolean inArea(int[][] grid, int r, int c) {
-            return 0 <= r && r < grid.length
-                && 0 <= c && c < grid[0].length;
+        private boolean check(int[][] grid, int row, int col){
+            if(row < 0 || row >= grid.length || col < 0 || col >= grid[0].length){
+                return true;
+            }
+            return false;
         }
 
     }

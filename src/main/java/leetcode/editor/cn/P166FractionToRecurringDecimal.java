@@ -50,6 +50,7 @@ import java.util.Map;
 public class P166FractionToRecurringDecimal{
     public static void main(String[] args) {
         Solution solution = new P166FractionToRecurringDecimal().new Solution();
+        System.out.println(solution.fractionToDecimal(10, 3));
         // TO TEST
     }
     //leetcode submit region begin(Prohibit modification and deletion)
