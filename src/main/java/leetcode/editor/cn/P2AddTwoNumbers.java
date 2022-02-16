@@ -80,35 +80,27 @@ public class P2AddTwoNumbers {
     class Solution {
 
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-            if (l1 == null || l2 == null) {
-                return null;
-            }
+            ListNode root = new ListNode();
+            ListNode node = root;
             int carry = 0;
-            ListNode root = null;
-            ListNode tail = null;
-            while (l1 != null || l2 != null) {
-                int sum = 0;
-                if (l1 != null) {
-                    sum += l1.val;
-                    l1 = l1.next;
-                }
-                if (l2 != null) {
-                    sum += l2.val;
-                    l2 = l2.next;
-                }
-                sum += carry;
-                carry = sum / 10;
-                if (root == null) {
-                    root = tail = new ListNode(sum % 10);
-                } else {
-                    tail.next = new ListNode(sum % 10);
-                    tail = tail.next;
-                }
+            while(l1 != null || l2 != null){
+                int val = 0;
+                val += l1 == null ? 0 : l1.val;
+                val += l2 == null ? 0 : l2.val;
+                val += carry;
+                carry = val / 10;
+                val %= 10;
+                ListNode next = new ListNode(val);
+                node.next = next;
+                node = next;
+
+                l1 = l1 == null ? null : l1.next;
+                l2 = l2 == null ? null : l2.next;
             }
             if (carry > 0) {
-                tail.next = new ListNode(carry);
+                node.next = new ListNode(carry);
             }
-            return root;
+            return root.next;
         }
 
     }

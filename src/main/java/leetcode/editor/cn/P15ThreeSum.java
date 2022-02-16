@@ -45,9 +45,9 @@ public class P15ThreeSum {
     class Solution {
         public List<List<Integer>> threeSum(int[] nums) {
             List<List<Integer>> ans = new ArrayList<>();
-            if (nums == null || nums.length < 3) {
-                return ans;
-            }
+            //if (nums == null || nums.length < 3) {
+            //    return ans;
+            //}
             Arrays.sort(nums);
             for (int i = 0; i < nums.length; i++) {
                 int num = nums[i];

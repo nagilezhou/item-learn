@@ -91,8 +91,7 @@ public class P79WordSearch {
                 for (int d = 0; d < 4; d++) {
                     int nextRow = row + di[d];
                     int nextCol = col + dj[d];
-                    if (nextRow >= 0 && nextRow < m && nextCol >= 0 && nextCol < n
-                        && board[nextRow][nextCol] == word.charAt(begin + 1) && !visited[nextRow][nextCol]) {
+                    if (nextRow >= 0 && nextRow < m && nextCol >= 0 && nextCol < n && !visited[nextRow][nextCol]) {
                         if(backtrack(board, visited, word, nextRow, nextCol, begin + 1)){
                             return true;
                         }

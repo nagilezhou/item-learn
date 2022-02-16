@@ -109,6 +109,9 @@ class Solution {
         return res;
     }
 
+}
+//leetcode submit region end(Prohibit modification and deletion)
+
     public class TreeNode {
         int val;
         TreeNode left;
@@ -124,8 +127,6 @@ class Solution {
             this.right = right;
         }
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
 
 }
 

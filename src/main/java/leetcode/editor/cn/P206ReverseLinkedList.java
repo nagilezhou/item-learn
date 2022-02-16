@@ -82,6 +82,13 @@ class Solution {
         return last;
     }
 
+
+
+
+}
+//leetcode submit region end(Prohibit modification and deletion)
+
+
     class ListNode {
         int val;
         ListNode next;
@@ -95,11 +102,6 @@ class Solution {
             this.next = next;
         }
     }
-
-
-}
-//leetcode submit region end(Prohibit modification and deletion)
-
 }
 
 

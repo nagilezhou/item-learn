@@ -83,9 +83,9 @@ class Solution {
             for (int i = 0; i < size; ++i) {
                 TreeNode curNode = nodeQueue.poll();
                 if (isLeft) {
-                    levelList.offerLast(curNode.val);
+                    levelList.addLast(curNode.val);
                 } else {
-                    levelList.offerFirst(curNode.val);
+                    levelList.addFirst(curNode.val);
                 }
                 if (curNode.left != null) {
                     nodeQueue.offer(curNode.left);

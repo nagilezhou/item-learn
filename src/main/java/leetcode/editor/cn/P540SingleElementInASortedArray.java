@@ -36,28 +36,19 @@ public class P540SingleElementInASortedArray {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int singleNonDuplicate(int[] nums) {
-            if (nums == null) {
-                return 0;
-            }
-            int low = 0;
-            int high = nums.length - 1;
-            while (low < high) {
-                int mid = low + (high - low) / 2;
-                if(nums[mid] == nums[mid - 1]){
-                    mid = mid - 1;
-                }else if(nums[mid] == nums[mid + 1]){
-                    mid = mid;
-                }else {
-                    return nums[mid];
+            int n = nums.length;
+            int l = 0, r = n - 1;
+            while (l < r) {
+                int mid = l + r >> 1;
+                if (mid % 2 == 0) {
+                    if (mid + 1 < n && nums[mid] == nums[mid + 1]) l = mid + 1;
+                    else r = mid;
+                } else {
+                    if (mid - 1 >= 0 && nums[mid - 1] == nums[mid]) l = mid + 1;
+                    else r = mid;
                 }
-                if((mid - low) % 2 == 1){
-                    high = mid - 1;
-                }else {
-                    low = mid + 2;
-                }
-
             }
-            return nums[low];
+            return nums[l];
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

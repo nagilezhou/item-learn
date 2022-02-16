@@ -54,9 +54,9 @@ public class P5LongestPalindromicSubstring{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String longestPalindrome(String s) {
-        if(s == null || s.length() < 2){
-            return s;
-        }
+        //if(s == null || s.length() < 2){
+        //    return s;
+        //}
         int length = s.length();
         int begin = 0;
         int end = 0;

@@ -82,45 +82,33 @@ public class P25ReverseNodesInKGroup {
      */
     class Solution {
         public ListNode reverseKGroup(ListNode head, int k) {
-            if (head == null || k <= 0) {
-                return null;
+            if(head == null || head.next == null){
+                return head;
             }
-            ListNode dummyHead = new ListNode();
-            ListNode tail = dummyHead;
-            while (head != null) {
-                int tmp = 1;
-                ListNode tmpNode = head;
-                while (true) {
-                    tmpNode = tmpNode.next;
-                    tmp++;
-                    if (tmpNode == null) {
-                        tail.next = head;
-                        head = null;
-                        break;
-                    }
-                    if (tmp == k) {
-                        ListNode tmpTail = tmpNode.next;
-                        tmpNode.next = null;
-                        tail.next = reverseList(head);
-                        tail = head;
-                        head = tmpTail;
-                        break;
-                    }
+
+            ListNode tail = head;
+            for(int i = 0; i < k; i++){
+                if(tail == null){
+                    return head;
                 }
+                tail = tail.next;
             }
-            return dummyHead.next;
+
+            ListNode newHead = reverse(head, tail);
+            head.next = reverseKGroup(tail, k);
+            return newHead;
         }
 
-        public ListNode reverseList(ListNode head) {
-            ListNode resHead = null;
-            ListNode next;
-            while (head != null) {
+        private ListNode reverse(ListNode head, ListNode tail){
+            ListNode pre = null;
+            ListNode next = null;
+            while(head != tail){
                 next = head.next;
-                head.next = resHead;
-                resHead = head;
+                head.next = pre;
+                pre = head;
                 head = next;
             }
-            return resHead;
+            return pre;
         }
     }
 

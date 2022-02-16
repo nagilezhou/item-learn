@@ -94,6 +94,22 @@ public class P114FlattenBinaryTreeToLinkedList {
             }
         }
 
+        public void flatten3(TreeNode root) {
+            if (root == null) {
+                return;
+            }
+            if (root.left != null) {
+                TreeNode pre = root.left;
+                while (pre.right != null) {
+                    pre = pre.right;
+                }
+                pre.right = root.right;
+                root.right = root.left;
+                root.left = null;
+            }
+            flatten3(root.right);
+        }
+
         public void flatten2(TreeNode root) {
             List<TreeNode> list = preorder2(root);
             for (int i = 1; i < list.size(); i++) {
@@ -129,7 +145,8 @@ public class P114FlattenBinaryTreeToLinkedList {
         }
     }
 
-    public static class TreeNode {
+    //leetcode submit region end(Prohibit modification and deletion)
+    public class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -143,9 +160,8 @@ public class P114FlattenBinaryTreeToLinkedList {
             this.left = left;
             this.right = right;
         }
-        //leetcode submit region end(Prohibit modification and deletion)
-
     }
+
 }
 
 

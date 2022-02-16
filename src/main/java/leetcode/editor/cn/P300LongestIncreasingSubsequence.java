@@ -63,24 +63,24 @@ public class P300LongestIncreasingSubsequence {
     class Solution {
 
         // dp n*n
-        public int lengthOfLIS(int[] nums) {
-            int length = nums.length;
-            int[] dp = new int[length];
+        public int lengthOfLIS2(int[] nums) {
+            int n = nums.length;
+            int[] dp = new int[n];
             Arrays.fill(dp, 1);
-            int maxLength = 0;
-            for (int i = 0; i < length; i++) {
+            int res = 0;
+            for (int i = 0; i < n; i++) {
                 for (int j = 0; j < i; j++) {
-                    if (nums[i] > nums[j]) {
+                    if (nums[j] < nums[i]) {
                         dp[i] = Math.max(dp[i], dp[j] + 1);
                     }
                 }
-                maxLength = Math.max(maxLength, dp[i]);
+                res = Math.max(res, dp[i]);
             }
-            return maxLength;
+            return res;
         }
 
         // dp+二分优化 nlogn 贪心算大
-        public int lengthOfLIS2(int[] nums) {
+        public int lengthOfLIS3(int[] nums) {
             int len = nums.length;
             if (len <= 1) {
                 return len;
@@ -107,27 +107,49 @@ public class P300LongestIncreasingSubsequence {
                     while (left < right) {
                         // 选左中位数不是偶然，而是有原因的，原因请见 LeetCode 第 35 题题解
                         // int mid = left + (right - left) / 2;
-                        int mid = left + ((right - left) >>> 1);
-                        if (tail[mid] < nums[i]) {
+                        int mid = left + right >> 1;
+                        if (tail[mid] >= nums[i]) {
                             // 中位数肯定不是要找的数，把它写在分支的前面
-                            left = mid + 1;
-                        } else {
                             right = mid;
+                        } else {
+                            left = mid + 1;
                         }
                     }
                     // 走到这里是因为 【逻辑 1】 的反面，因此一定能找到第 1 个大于等于 nums[i] 的元素
                     // 因此，无需再单独判断
                     tail[left] = nums[i];
                 }
-                // 调试方法
-                // printArray(nums[i], tail);
             }
             // 此时 end 是有序数组 tail 最后一个元素的索引
             // 题目要求返回的是长度，因此 +1 后返回
+            //System.out.println(Arrays.toString(tail));
             end++;
             return end;
         }
 
+        public int lengthOfLIS(int[] nums) {
+            int n = nums.length;
+            int[] dp = new int[n];
+            int end = 0;
+            for(int i = 0; i < n; i++){
+                int left = 0;
+                int right = end;
+                while (left < right){
+                    int mid = left + right >> 1;
+                    if (dp[mid] >= nums[i]){
+                        right = mid;
+                    }else {
+                        left = mid + 1;
+                    }
+                }
+                if(left == end){
+                    end++;
+                }
+                dp[left] = nums[i];
+            }
+            //System.out.println(Arrays.toString(dp));
+            return end ;
+        }
 
     }
     //leetcode submit region end(Prohibit modification and deletion)

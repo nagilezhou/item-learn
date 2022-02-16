@@ -79,7 +79,6 @@ package leetcode.editor.cn;
 
 import java.util.HashMap;
 import java.util.LinkedHashSet;
-import java.util.Map;
 
 //Java：LFU Cache
 public class P460LfuCache {
@@ -92,30 +91,30 @@ public class P460LfuCache {
     class LFUCache {
 
         // key 到 value 的映射（一对一）
-        private HashMap<Integer, Integer> KV;
+        private final HashMap<Integer, Integer> keyToValMap;
         // key 到 frequency 的映射（一对一）
-        private HashMap<Integer, Integer> KF;
+        private final HashMap<Integer, Integer> keyToFreqMap;
         // frequency 到 key 的映射（一对多）
-        private HashMap<Integer, LinkedHashSet<Integer>> FK;
+        private final HashMap<Integer, LinkedHashSet<Integer>> freqToKeysMap;
         // 记录最小频次
         private int minFrequency;
         // 缓存容量
         private int cap;
 
         public LFUCache(int capacity) {
-            KV = new HashMap<>();
-            KF = new HashMap<>();
-            FK = new HashMap<>();
+            keyToValMap = new HashMap<>();
+            keyToFreqMap = new HashMap<>();
+            freqToKeysMap = new HashMap<>();
             this.cap = capacity;
             this.minFrequency = 0;
         }
 
         public int get(int key) {
-            if (!KV.containsKey(key)) {
+            if (!keyToValMap.containsKey(key)) {
                 return -1;
             }
             increaseFreq(key);
-            return KV.get(key);
+            return keyToValMap.get(key);
         }
 
         public void put(int key, int value) {
@@ -123,38 +122,38 @@ public class P460LfuCache {
                 return;
             }
             // 给定的 key 在 KV 中不存在
-            if (!KV.containsKey(key)) {
+            if (!keyToValMap.containsKey(key)) {
                 // 容量已经满了，删掉一个
-                if (this.cap == KV.size()) {
+                if (this.cap == keyToValMap.size()) {
                     removeOne();
                 }
-                KV.put(key, value);
-                KF.put(key, 1);
-                FK.putIfAbsent(1, new LinkedHashSet<Integer>());
-                FK.get(1).add(key);
+                keyToValMap.put(key, value);
+                keyToFreqMap.put(key, 1);
+                freqToKeysMap.putIfAbsent(1, new LinkedHashSet<Integer>());
+                freqToKeysMap.get(1).add(key);
                 this.minFrequency = 1;
             } else {
                 // 给定的 key 在 KV 中已经存在
-                KV.put(key, value);
+                keyToValMap.put(key, value);
                 increaseFreq(key);
             }
         }
 
         // 增加相应 key 的频数
         private void increaseFreq(int key) {
-            int oldFreq = KF.get(key);
+            int oldFreq = keyToFreqMap.get(key);
             int newFreq = oldFreq + 1;
-            KF.put(key, newFreq);
-            if (!FK.containsKey(newFreq)) {
+            keyToFreqMap.put(key, newFreq);
+            if (!freqToKeysMap.containsKey(newFreq)) {
                 LinkedHashSet<Integer> sameFreqKey = new LinkedHashSet<>();
                 sameFreqKey.add(key);
-                FK.put(newFreq, sameFreqKey);
+                freqToKeysMap.put(newFreq, sameFreqKey);
             } else {
-                FK.get(newFreq).add(key);
+                freqToKeysMap.get(newFreq).add(key);
             }
-            FK.get(oldFreq).remove(key);
-            if (FK.get(oldFreq).isEmpty()) {
-                FK.remove(oldFreq);
+            freqToKeysMap.get(oldFreq).remove(key);
+            if (freqToKeysMap.get(oldFreq).isEmpty()) {
+                freqToKeysMap.remove(oldFreq);
                 if (oldFreq == this.minFrequency) {
                     this.minFrequency++;
                 }
@@ -163,13 +162,13 @@ public class P460LfuCache {
 
         // 删掉使用频率最低的值
         private void removeOne() {
-            LinkedHashSet<Integer> keyList = FK.get(this.minFrequency);
+            LinkedHashSet<Integer> keyList = freqToKeysMap.get(this.minFrequency);
             int deletedKey = keyList.iterator().next();
-            KV.remove(deletedKey);
-            KF.remove(deletedKey);
+            keyToValMap.remove(deletedKey);
+            keyToFreqMap.remove(deletedKey);
             keyList.remove(deletedKey);
             if (keyList.isEmpty()) {
-                FK.remove(this.minFrequency);
+                freqToKeysMap.remove(this.minFrequency);
             }
         }
     }

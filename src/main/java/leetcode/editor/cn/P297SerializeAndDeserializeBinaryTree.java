@@ -138,6 +138,11 @@ public class P297SerializeAndDeserializeBinaryTree {
 
 
     public class Codec2{
+        //  1
+        //2   3
+        //  4    5
+
+        // 1 2 # # 3 4 # # 5 # #
         public String serialize(TreeNode root) {
             if(root == null){
                 return "#";
