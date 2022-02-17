@@ -49,41 +49,41 @@ public class P152MaximumProductSubarray {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
         public int maxProduct(int[] nums) {
-            int max = Integer.MIN_VALUE, imax = 1, imin = 1;
-            for (int i = 0; i < nums.length; i++) {
-                if (nums[i] < 0) {
-                    int tmp = imax;
-                    imax = imin;
-                    imin = tmp;
-                }
-                imax = Math.max(imax * nums[i], nums[i]);
-                imin = Math.min(imin * nums[i], nums[i]);
-
-                max = Math.max(max, imax);
+            int n = nums.length;
+            int max = nums[0];
+            int min = nums[0];
+            int res = nums[0];
+            for (int i = 1; i < n; i++) {
+                int tempMax = max;
+                max = Math.max(max * nums[i], Math.max(min * nums[i], nums[i]));
+                min = Math.min(tempMax * nums[i], Math.min(min * nums[i], nums[i]));
+                res = Math.max(res, max);
             }
-            return max;
+            return res;
         }
 
-        // 呆瓜dp
         public int maxProduct2(int[] nums) {
-            int[][] dp = new int[nums.length + 1][nums.length + 1];
-            int max = Integer.MIN_VALUE;
-            for (int i = 1; i <= nums.length; i++) {
-                for (int j = 0; j < i; j++) {
-                    if (i - j <= 1) {
-                        dp[j][i] = nums[i - 1];
-                    } else {
-                        dp[j][i] = dp[j][i - 1] * nums[i - 1];
-                    }
-                    max = Math.max(max, dp[j][i]);
-                }
+            int n = nums.length;
+            int[] maxs = new int[n];
+            int[] mins = new int[n];
+            maxs[0] = nums[0];
+            mins[0] = nums[0];
+
+            int res = nums[0];
+            for (int i = 1; i < n; i++) {
+                maxs[i] = Math.max(maxs[i - 1] * nums[i], Math.max(mins[i - 1] * nums[i], nums[i]));
+                mins[i] = Math.min(maxs[i - 1] * nums[i], Math.min(mins[i - 1] * nums[i], nums[i]));
+                res = Math.max(res, maxs[i]);
             }
-            return max;
+            return res;
         }
 
-    }
-    //leetcode submit region end(Prohibit modification and deletion)
+
+
+}
+//leetcode submit region end(Prohibit modification and deletion)
 
 }
 

@@ -44,25 +44,24 @@ public class P64MinimumPathSum {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int minPathSum(int[][] grid) {
-            int rowLength = grid.length;
-            int colLength = grid[0].length;
-            int[][] dp = new int[rowLength][colLength];
-            dp[0][0] = grid[0][0];
-            for (int row = 0; row < rowLength; row++) {
-                for (int col = 0; col < colLength; col++) {
-                    if (row == 0 && col == 0) {
-                        continue;
-                    }
-                    if (row == 0) {
-                        dp[row][col] = dp[row][col - 1] + grid[row][col];
-                    } else if (col == 0) {
-                        dp[row][col] += dp[row - 1][col] + grid[row][col];
+            int n = grid.length;
+            int m = grid[0].length;
+            int[][] dp = new int[n][m];
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    int num = grid[i][j];
+                    if (i == 0 && j == 0) {
+                        dp[i][j] = num;
+                    } else if (i == 0) {
+                        dp[i][j] = num + dp[i][j - 1];
+                    } else if (j == 0) {
+                        dp[i][j] = num + dp[i - 1][j];
                     } else {
-                        dp[row][col] = Math.min(dp[row][col - 1], dp[row - 1][col]) + grid[row][col];
+                        dp[i][j] = num + Math.min(dp[i - 1][j], dp[i][j - 1]);
                     }
                 }
             }
-            return dp[rowLength - 1][colLength - 1];
+            return dp[n - 1][m - 1];
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

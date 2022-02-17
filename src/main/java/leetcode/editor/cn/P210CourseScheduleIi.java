@@ -57,52 +57,144 @@
 
 package leetcode.editor.cn;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 
 //Java：Course Schedule II 拓扑排序
 // 2021-08-14 review 1
-public class P210CourseScheduleIi{
+public class P210CourseScheduleIi {
     public static void main(String[] args) {
         Solution solution = new P210CourseScheduleIi().new Solution();
+        System.out.println(Arrays.toString(solution.findOrder(2, new int[][]{{0,1}})));
         // TO TEST
     }
-    //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
 
-    // BFS
-    public int[] findOrder(int numCourses, int[][] prerequisites) {
-        if(numCourses == 0 || prerequisites == null){
-            return new int[0];
-        }
-        int[] inDegrees = new int[numCourses];
-        for(int[] p : prerequisites){
-            inDegrees[p[0]]++;
-        }
-        Queue<Integer> queue = new LinkedList<>();
-        for (int i = 0; i < inDegrees.length; i++) {
-            if (inDegrees[i] == 0) {
-                queue.offer(i);
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+
+        // BFS
+        public int[] findOrder2(int numCourses, int[][] prerequisites) {
+            if (numCourses == 0 || prerequisites == null) {
+                return new int[0];
             }
-        }
-        int[] res = new int[numCourses];
-        int count = 0;
-        while (!queue.isEmpty()){
-            int curr = queue.poll();
-            res[count++] = curr;
-            for(int [] p : prerequisites){
-                if(p[1] == curr){
-                    inDegrees[p[0]]--;
-                    if(inDegrees[p[0]] == 0){
-                        queue.offer(p[0]);
+            int[] inDegrees = new int[numCourses];
+            for (int[] p : prerequisites) {
+                inDegrees[p[0]]++;
+            }
+            Queue<Integer> queue = new LinkedList<>();
+            for (int i = 0; i < inDegrees.length; i++) {
+                if (inDegrees[i] == 0) {
+                    queue.offer(i);
+                }
+            }
+            int[] res = new int[numCourses];
+            int count = 0;
+            while (!queue.isEmpty()) {
+                int curr = queue.poll();
+                res[count++] = curr;
+                for (int[] p : prerequisites) {
+                    if (p[1] == curr) {
+                        inDegrees[p[0]]--;
+                        if (inDegrees[p[0]] == 0) {
+                            queue.offer(p[0]);
+                        }
                     }
                 }
             }
+            return count == numCourses ? res : new int[0];
         }
-        return count == numCourses ? res : new int[0];
+
+        public int[] findOrder3(int numCourses, int[][] prerequisites) {
+            Map<Integer, List<Integer>> graph = new HashMap<>();
+            int[] indegrees = new int[numCourses];
+            for(int[] prerequisite : prerequisites){
+                indegrees[prerequisite[0]]++;
+                List<Integer> list = graph.getOrDefault(prerequisite[1], new ArrayList<>());
+                list.add(prerequisite[0]);
+                graph.put(prerequisite[1], list);
+            }
+            Deque<Integer> queue = new LinkedList<>();
+            for(int i = 0; i < numCourses; i++){
+                if(indegrees[i] == 0){
+                    queue.offer(i);
+                }
+            }
+
+            List<Integer> res = new ArrayList<>();
+            while(!queue.isEmpty()){
+                int size = queue.size();
+                for(int i = 0; i < size; i++){
+                    int index = queue.poll();
+                    res.add(index);
+                    List<Integer> list = graph.get(index);
+                    if(list == null || list.isEmpty()){
+                        continue;
+                    }
+                    for(int next : list){
+                        if(--indegrees[next] == 0){
+                            queue.offer(next);
+                        }
+                    }
+                }
+            }
+
+            return res.size() == numCourses ? res.stream().mapToInt(Integer::valueOf).toArray() : new int[0];
+        }
+
+
+        public int[] findOrder(int numCourses, int[][] prerequisites) {
+            Map<Integer, List<Integer>> graph = new HashMap<>();
+            for(int[] prerequisite : prerequisites){
+                List<Integer> list = graph.getOrDefault(prerequisite[1], new ArrayList<>());
+                list.add(prerequisite[0]);
+                graph.put(prerequisite[1], list);
+            }
+            int[] marked = new int[numCourses];
+            Deque<Integer> stack = new LinkedList<>();
+            for(int i = 0; i < numCourses; i++){
+                if(dfs(i, graph, marked, stack)){
+                    return new int[0];
+                }
+            }
+            if(stack.size() != numCourses){
+                return new int[0];
+            }
+            int[] res = new int[numCourses];
+            for(int i = 0; i < numCourses; i++){
+                res[i] = stack.pop();
+            }
+            return res;
+        }
+
+        private boolean dfs(int i, Map<Integer, List<Integer>> graph, int[] marked, Deque<Integer> stack){
+            if(marked[i] == 1){
+                return true;
+            }
+            if(marked[i] == 2){
+                return false;
+            }
+
+            marked[i] = 1;
+            List<Integer> list = graph.get(i);
+            if(list != null && !list.isEmpty()){
+                for(int index : list){
+                    if(dfs(index, graph, marked, stack)){
+                        return true;
+                    }
+                }
+            }
+            marked[i] = 2;
+            stack.push(i);
+            return false;
+        }
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
 
