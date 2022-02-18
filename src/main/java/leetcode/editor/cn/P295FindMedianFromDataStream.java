@@ -71,38 +71,48 @@ public class P295FindMedianFromDataStream{
     //leetcode submit region begin(Prohibit modification and deletion)
 class MedianFinder {
 
-        PriorityQueue<Integer> l = new PriorityQueue<>((a,b)->b-a);
-        PriorityQueue<Integer> r = new PriorityQueue<>((a,b)->a-b);
+        // 大根堆 放小的数
+        PriorityQueue<Integer> leftHeap;
+
+        // 小根堆 放大的数
+        PriorityQueue<Integer> rightHeap;
+
+        public MedianFinder() {
+            leftHeap = new PriorityQueue<>((o1, o2) -> o2 - o1);
+            rightHeap = new PriorityQueue<>((o1, o2) -> o1 - o2);
+        }
 
         public void addNum(int num) {
-            int s1 = l.size(), s2 = r.size();
-            if (s1 == s2) {
-                if (r.isEmpty() || num <= r.peek()) {
-                    l.add(num);
-                } else {
-                    l.add(r.poll());
-                    r.add(num);
-                }
-            } else {
-                if (l.peek() <= num) {
-                    r.add(num);
-                } else {
-                    r.add(l.poll());
-                    l.add(num);
-                }
+            if(rightHeap.isEmpty() || num > rightHeap.peek()){
+                rightHeap.offer(num);
+            }else{
+                leftHeap.offer(num);
             }
+            adjustHeap();
         }
 
         public double findMedian() {
-            int s1 = l.size(), s2 = r.size();
-            if (s1 == s2) {
-                return (l.peek() + r.peek()) / 2.0;
-            } else {
-                return l.peek();
+            if(leftHeap.isEmpty() && rightHeap.isEmpty()){
+                return (double)0;
+            }
+            if(leftHeap.size() == rightHeap.size()){
+                return (leftHeap.peek() / 2.0  + rightHeap.peek() / 2.0);
+            }else{
+                return rightHeap.peek() * 1.0;
             }
         }
 
-}
+        private void adjustHeap(){
+            while(leftHeap.size() > rightHeap.size()){
+                rightHeap.offer(leftHeap.poll());
+            }
+            while(rightHeap.size() - leftHeap.size() > 1){
+                leftHeap.offer(rightHeap.poll());
+            }
+        }
+
+
+    }
 
 /**
  * Your MedianFinder object will be instantiated and called as such:
