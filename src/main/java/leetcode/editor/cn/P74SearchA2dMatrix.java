@@ -47,11 +47,11 @@ class Solution {
         int m = matrix.length, n = matrix[0].length;
         int l = 0, r = m * n - 1;
         while (l < r) {
-            int mid = l + r + 1 >> 1;
-            if (matrix[mid / n][mid % n] <= target) {
-                l = mid;
+            int mid = l + r  >> 1;
+            if (matrix[mid / n][mid % n] >= target) {
+                r = mid;
             } else {
-                r = mid - 1;
+                l = mid + 1;
             }
         }
         return matrix[r / n][r % n] == target;

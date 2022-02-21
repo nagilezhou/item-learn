@@ -90,6 +90,7 @@ public class P148SortList {
                 } else {
                     node.next = right;
                     right = right.next;
+
                 }
                 node = node.next;
             }

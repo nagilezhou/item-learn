@@ -49,14 +49,6 @@ public class P81SearchInRotatedSortedArrayIi{
 class Solution {
     public boolean search(int[] nums, int target) {
         int n = nums.length;
-        if (n == 0) {
-            return false;
-        }
-        if (n == 1) {
-            return nums[0] == target;
-        }
-
-
         // 第一次「二分」：从中间开始找，找到满足 >=nums[0] 的分割点（旋转点）
         int left = 0, right = n - 1;
         while (left < right && nums[0] == nums[right]) right--;

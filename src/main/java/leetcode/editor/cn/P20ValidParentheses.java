@@ -56,9 +56,9 @@
 
 package leetcode.editor.cn;
 
-import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 //Java：Valid Parentheses
@@ -74,26 +74,18 @@ public class P20ValidParentheses {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean isValid(String s) {
-            if (s == null || s.length() < 2) {
-                return false;
-            }
-
-            Map<Character, Character> pairs = new HashMap<Character, Character>() {{
-                put(')', '(');
-                put(']', '[');
-                put('}', '{');
-            }};
-            Deque<Character> stack = new ArrayDeque<>(s.length());
-            for (char c : s.toCharArray()) {
-                if (pairs.containsValue(c)) {
+            Deque<Character> stack = new LinkedList<>();
+            Map<Character, Character> map = new HashMap<>();
+            map.put('(',')');
+            map.put('[',']');
+            map.put('{','}');
+            int n = s.length();
+            for(int i = 0; i < n; i++){
+                char c = s.charAt(i);
+                if(map.containsKey(c)){
                     stack.push(c);
-                    continue;
-                }
-                if (pairs.containsKey(c)) {
-                    if (stack.isEmpty()) {
-                        return false;
-                    }
-                    if (!stack.pop().equals(pairs.get(c))) {
+                }else{
+                    if(stack.isEmpty() || c != map.get(stack.pop())){
                         return false;
                     }
                 }
