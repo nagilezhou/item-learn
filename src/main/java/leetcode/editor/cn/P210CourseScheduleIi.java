@@ -174,6 +174,7 @@ public class P210CourseScheduleIi {
 
         private boolean dfs(int i, Map<Integer, List<Integer>> graph, int[] marked, Deque<Integer> stack){
             if(marked[i] == 1){
+                // 有向图找环 在这里将栈里面的节点取出来
                 return true;
             }
             if(marked[i] == 2){
