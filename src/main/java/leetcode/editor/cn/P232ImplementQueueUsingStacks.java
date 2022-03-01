@@ -69,11 +69,13 @@ public class P232ImplementQueueUsingStacks{
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class MyQueue {
-        Deque<Integer> inStack = new LinkedList<>();
-        Deque<Integer> outStack = new LinkedList<>();
+        Deque<Integer> inStack;
+        Deque<Integer> outStack;
 
     /** Initialize your data structure here. */
     public MyQueue() {
+        inStack = new LinkedList<>();
+        outStack = new LinkedList<>();
     }
 
     /** Push element x to the back of queue. */

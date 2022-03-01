@@ -35,19 +35,57 @@ import java.util.Arrays;
 public class P76MinimumWindowSubstring {
     public static void main(String[] args) {
         Solution solution = new P76MinimumWindowSubstring().new Solution();
-        System.out.println(solution.minWindow("aa", "aa"));
+        System.out.println(solution.minWindow("ADOBECODEBANC", "ABC"));
         // TO TEST
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String minWindow(String s, String t) {
+            char[] ss = s.toCharArray();
+            char[] tt = t.toCharArray();
+
+            int[] dict = new int[128];
+            Arrays.fill(dict, -1);
+            for (char c : tt) {
+                if (dict[c] == -1) {
+                    dict[c] = 0;
+                }
+                dict[c]++;
+            }
+            int count = tt.length;
+            int minStart = -1;
+            int minLen = Integer.MAX_VALUE;
+            for (int left = 0, right = 0; right < ss.length; right++) {
+                char c = ss[right];
+                if (dict[c] > 0) {
+                    count--;
+                }
+                dict[c]--;
+                while (count == 0) {
+                    if (right - left + 1 < minLen) {
+                        minStart = left;
+                        minLen = right - left + 1;
+                    }
+                    if (dict[ss[left]] == 0) {
+                        count++;
+                    }
+                    dict[ss[left]]++;
+                    left++;
+                }
+            }
+
+            return minStart == -1 ? "" : s.substring(minStart, minStart + minLen);
+        }
+
+
+        public String minWindow2(String s, String t) {
             int[] help = new int[128];
             Arrays.fill(help,-1);
             for (char c : t.toCharArray()) {
-               if(help[c] == -1){
-                   help[c]++;
-               }
+                if(help[c] == -1){
+                    help[c]++;
+                }
                 help[c]++;
             }
             int left = 0;

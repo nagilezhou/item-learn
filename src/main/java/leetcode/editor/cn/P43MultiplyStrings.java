@@ -34,9 +34,6 @@ public class P43MultiplyStrings{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String multiply(String num1, String num2) {
-        if (num1.equals("0") || num2.equals("0")) {
-            return "0";
-        }
         int[] res = new int[num1.length() + num2.length()];
         for (int i = num1.length() - 1; i >= 0; i--) {
             int n1 = num1.charAt(i) - '0';
@@ -50,10 +47,10 @@ class Solution {
 
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < res.length; i++) {
-            if (i == 0 && res[i] == 0) continue;
+            if (res[i] == 0 && result.length() == 0) continue;
             result.append(res[i]);
         }
-        return result.toString();
+        return result.length() == 0 ? "0" : result.toString();
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -130,7 +130,7 @@ public class P468ValidateIpAddress {
                     if(!isTenNumber(c)){
                         return false;
                     }
-                    sum += (c - '0') * Math.pow(10, ip.length() - i - 1);
+                    sum = sum * 10 + c - '0';
                 }
                 if (sum > 255) {
                     return false;
